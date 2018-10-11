@@ -55,7 +55,8 @@ public class CheckoutSolution {
             if (itemAmount == null)
                 item.setAmount(0);
             else {
-                SpecialReducerItem reducer = item.getSpecialReducer();
+                //find reducer of this item
+                SpecialReducerItem reducer = priceOffersTable.values()
 
                 if (reducer != null) {
                     int amountToReduce = reducer.getReducedAmount(item.getItem(), itemAmount);
@@ -69,6 +70,7 @@ public class CheckoutSolution {
             }
 
         }
+
         //calculate total price of each item
         int totalPrice = 0;
         for (Skus item : priceOffersTable.values()) {
@@ -104,6 +106,13 @@ public class CheckoutSolution {
             return item;
         }
 
+        public boolean isReducerOf(String targetName) {
+            if (specialReducer == null)
+                return false;
+
+            return specialReducer.getReduceTarget().equals(targetName);
+        }
+
         public SpecialReducerItem getSpecialReducer() {
             return specialReducer;
         }
@@ -137,6 +146,10 @@ public class CheckoutSolution {
         private String reduceTarger;
         private int reduceAmount;
         private int triggerAmount;
+
+        public String getReduceTarget() {
+            return reduceTarger;
+        }
 
         public SpecialReducerItem(String reduceTarger, int reduceAmount, int triggerAmount) {
             this.reduceTarger = reduceTarger;

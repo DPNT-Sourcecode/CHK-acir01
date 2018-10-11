@@ -21,8 +21,11 @@ public class CheckoutSolution {
 
     // input 2B, 3A, need to check out which kind of input
     public Integer checkout(String skus) {
-        if (skus == null || skus.isEmpty())
+        if (skus == null)
             return -1;
+
+        if (skus.isEmpty())
+            return 0;
 
         //parse string
         //last part is item type

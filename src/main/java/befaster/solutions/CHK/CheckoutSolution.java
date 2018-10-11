@@ -27,9 +27,20 @@ public class CheckoutSolution {
         if (skus.isEmpty())
             return 0;
 
-        //parse string
-        //last part is item type
-        //first is amount
+        //match amount of letters
+        Char[] items = skus.toCharArray();
+
+        //count each item
+
+        //set amount for each Skus
+
+        //calculate total price of each item
+        int totalPrice = 0;
+        for (Skus item : priceOffersTable.values()) {
+            totalPrice += item.getTotalPrice();
+        }
+
+
         String item = skus.substring(skus.length() - 1);
         String amount_s = skus.substring(0, skus.length() - 1);
 

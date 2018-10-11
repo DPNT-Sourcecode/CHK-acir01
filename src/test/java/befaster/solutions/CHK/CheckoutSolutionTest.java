@@ -42,7 +42,7 @@ public class CheckoutSolutionTest {
         assertThat(price_with_special, equalTo(160));
 
         Integer price_all_four = checkoutSolution.checkout("DBAC");
-        assertThat(price_with_special, equalTo(115));
+        assertThat(price_all_four, equalTo(115));
 
         Integer all_specials = checkoutSolution.checkout("ABABA");
         assertThat(all_specials, equalTo(175));

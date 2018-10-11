@@ -2,6 +2,7 @@ package befaster.solutions.CHK;
 
 import java.security.InvalidKeyException;
 import java.util.HashMap;
+import java.util.Map;
 
 public class CheckoutSolution {
     //offers table
@@ -9,12 +10,21 @@ public class CheckoutSolution {
 
     public CheckoutSolution() {
         priceOffersTable = new HashMap<String, Skus>();
-        Skus A = new Skus("A", 50, true, 3, 130, null);
-        Skus B = new Skus("B", 30, true, 2, 45, null);
-        Skus C = new Skus("C", 20, false, null, null, null);
-        Skus D = new Skus("D", 15, false, null, null, null);
+        Map<Integer, Integer> a_specials = new HashMap<>();
+        a_specials.put(3, 130);
+        a_specials.put(5, 200);
+        Skus A = new Skus("A", 50, true, 3, 130, null, a_specials);
+
+        Map<Integer, Integer> b_specials = new HashMap<>();
+        b_specials.put(2, 45);
+
+        Skus B = new Skus("B", 30, true, 2, 45, null, b_specials);
+        Skus C = new Skus("C", 20, false, null, null,
+                null, null);
+        Skus D = new Skus("D", 15, false, null, null,
+                null, null);
         Skus E = new Skus("E", 40, false, null, null,
-                new SpecialReducerItem("B", 1, 2));
+                new SpecialReducerItem("B", 1, 2), null);
         priceOffersTable.put(A.getItemName(), A);
         priceOffersTable.put(B.getItemName(), B);
         priceOffersTable.put(C.getItemName(), C);

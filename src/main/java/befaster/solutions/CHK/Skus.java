@@ -58,16 +58,18 @@ public class Skus {
         int totalPrice = 0;
         //is have special price
         if (isSpecial) {
-            for(Map.Entry<?,?> d : specialOffersMap.entrySet())
+            int leftAmount = 0;
+            //key - bundle size. value - bundle price
+            for(Map.Entry<Integer, Integer> entry : specialOffersMap.entrySet())
             {
-                
+                totalPrice = (amount/entry.getKey()) * entry.getValue();
             }
 
 
-            //calculate amount of special bundles
-            totalPrice = (amount / specialAmount) * specialPrice;
-            //add left item with default price
-            totalPrice += (amount % specialAmount) * price;
+//            //calculate amount of special bundles
+//            totalPrice = (amount / specialAmount) * specialPrice;
+//            //add left item with default price
+//            totalPrice += (amount % specialAmount) * price;
             return totalPrice;
         }
         //else return amount by price

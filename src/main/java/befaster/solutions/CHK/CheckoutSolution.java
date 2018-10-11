@@ -8,8 +8,8 @@ public class CheckoutSolution {
 
     public CheckoutSolution() {
         priceOffersTable = new HashMap<String, Skus>();
-        Skus A = new Skus("A", 50, true, 3, 130);
-        Skus B = new Skus("B", 30, true, 2, 45);
+        Skus A = new Skus("A", 50, true, 3, 130, false);
+        Skus B = new Skus("B", 30, true, 2, 45, false);
         Skus C = new Skus("C", 20, false, null, null);
         Skus D = new Skus("D", 15, false, null, null);
 
@@ -41,6 +41,8 @@ public class CheckoutSolution {
             itemsAmountMap.computeIfPresent(item_name, (k, v) -> v + 1);
             itemsAmountMap.computeIfAbsent(item_name, key -> 1);
         }
+        //remove items if there special match
+
         //set amount for each Skus
         for (Skus item : priceOffersTable.values()) {
             Integer itemAmount = itemsAmountMap.get(item.getItem());
@@ -72,6 +74,11 @@ public class CheckoutSolution {
         // special price
         private Integer specialPrice;
 
+        private Boolean specialReducer;
+
+        private SpecialReducerItem specialReducerAmount;
+
+
         public void setAmount(int amount) {
             this.amount = amount;
         }
@@ -80,12 +87,15 @@ public class CheckoutSolution {
             return item;
         }
 
-        public Skus(String item, int price, boolean isSpecial, Integer specialAmount, Integer specialPrice) {
+
+        public Skus(String item, int price, boolean isSpecial, Integer specialAmount, Integer specialPrice,
+                    SpecialReducerItem specialReducer) {
             this.specialAmount = specialAmount;
             this.item = item;
             this.price = price;
             this.isSpecial = isSpecial;
             this.specialPrice = specialPrice;
+            this.specialReducer = specialReducer;
         }
 
         public int getTotalPrice() {
@@ -100,6 +110,16 @@ public class CheckoutSolution {
             }
             //else return amount by price
             return amount * price;
+        }
+    }
+
+    private class SpecialReducerItem {
+        private String reduceTarger;
+        private int reduceAmount;
+
+        public SpecialReducerItem(String reduceTarger, int reduceAmount) {
+            this.reduceTarger = reduceTarger;
+            this.reduceAmount = reduceAmount;
         }
     }
 }

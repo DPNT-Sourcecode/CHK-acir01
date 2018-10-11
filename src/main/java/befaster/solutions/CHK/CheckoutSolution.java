@@ -39,7 +39,7 @@ public class CheckoutSolution {
     private class Skus {
         private int amount;
         // special amount
-        private int specialAmount;
+        private Integer specialAmount;
 
         // item
         private String item;
@@ -49,7 +49,7 @@ public class CheckoutSolution {
         private boolean isSpecial;
 
         // special price
-        private int specialPrice;
+        private Integer specialPrice;
 
         public void setAmount(int amount) {
             this.amount = amount;

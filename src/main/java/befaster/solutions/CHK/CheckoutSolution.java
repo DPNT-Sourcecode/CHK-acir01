@@ -26,6 +26,9 @@ public class CheckoutSolution {
                 null, null);
         Skus E = new Skus("E", 40, false, null, null,
                 new SpecialReducerItem("B", 1, 2), null);
+        SpecialReducerItem reducerF = new SpecialReducerItem("F", 1, 2);
+        Skus F = new Skus("F", 10, false, null,
+                null, reducerF, null);
         priceOffersTable.put(A.getItemName(), A);
         priceOffersTable.put(B.getItemName(), B);
         priceOffersTable.put(C.getItemName(), C);

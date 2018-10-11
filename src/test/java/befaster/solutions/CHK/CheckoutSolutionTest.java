@@ -93,4 +93,16 @@ public class CheckoutSolutionTest {
         Integer two_specials_in_a_row = checkoutSolution.checkout("AAAAAAAA");
         assertThat(two_specials_in_a_row, equalTo(330));
     }
+
+    @Test
+    public void reduce_f_to_itself_test(){
+        Integer price = checkoutSolution.checkout("FF");
+        assertThat(price, equalTo(20));
+
+        Integer got_free_f = checkoutSolution.checkout("FFF");
+        assertThat(price, equalTo(20));
+
+        Integer additional = checkoutSolution.checkout("FFFF");
+        assertThat(price, equalTo(30));
+    }
 }

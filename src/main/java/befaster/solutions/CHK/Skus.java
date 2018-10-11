@@ -1,5 +1,7 @@
 package befaster.solutions.CHK;
 
+import java.util.Map;
+
 public class Skus {
     private int amount;
     // special amount
@@ -15,8 +17,9 @@ public class Skus {
     // special price
     private Integer specialPrice;
 
-
     private SpecialReducerItem specialReducer;
+
+    private Map<Integer, Integer> specialOffersMap;
 
     public int getAmount() {
         return amount;
@@ -55,6 +58,12 @@ public class Skus {
         int totalPrice = 0;
         //is have special price
         if (isSpecial) {
+            for(Map.Entry<?,?> d : specialOffersMap.entrySet())
+            {
+                
+            }
+
+
             //calculate amount of special bundles
             totalPrice = (amount / specialAmount) * specialPrice;
             //add left item with default price

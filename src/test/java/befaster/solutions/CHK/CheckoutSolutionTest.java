@@ -54,7 +54,7 @@ public class CheckoutSolutionTest {
         assertThat(only_ee, equalTo(80));
 
         Integer no_reduction = checkoutSolution.checkout("BE");
-        assertThat(no_reduction, equalTo(80));
+        assertThat(no_reduction, equalTo(70));
     }
 
     @Test

@@ -45,13 +45,14 @@ public class Skus {
     }
 
     public Skus(String item, int price, boolean isSpecial, Integer specialAmount, Integer specialPrice,
-                SpecialReducerItem specialReducer) {
+                SpecialReducerItem specialReducer, Map<Integer, Integer> specialOffersMap) {
         this.specialAmount = specialAmount;
         this.item = item;
         this.price = price;
         this.isSpecial = isSpecial;
         this.specialPrice = specialPrice;
         this.specialReducer = specialReducer;
+        this.specialOffersMap = specialOffersMap;
     }
 
     public int getTotalPrice() {
@@ -60,11 +61,12 @@ public class Skus {
         if (isSpecial) {
             int leftAmount = 0;
             //key - bundle size. value - bundle price
-            for(Map.Entry<Integer, Integer> entry : specialOffersMap.entrySet())
-            {
-                totalPrice = (amount/entry.getKey()) * entry.getValue();
+            for (Map.Entry<Integer, Integer> entry : specialOffersMap.entrySet()) {
+                totalPrice += (amount / entry.getKey()) * entry.getValue();
+                leftAmount = (amount % entry.getKey());
             }
-
+            //last items not in available bundles goes by default price
+            totalPrice += leftAmount * price;
 
 //            //calculate amount of special bundles
 //            totalPrice = (amount / specialAmount) * specialPrice;

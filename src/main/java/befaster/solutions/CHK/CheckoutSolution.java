@@ -34,9 +34,12 @@ public class CheckoutSolution {
         HashMap<String, Integer> itemsAmountMap = new HashMap<>();
         for(char c : items){
             //incorrect product in table
-            if (!priceOffersTable.containsKey(c.toString())){
+            String item_name = Character.toString(c);
+            if (!priceOffersTable.containsKey(item_name)){
                 return -1;
             }
+
+            //if
         }
         //set amount for each Skus
 

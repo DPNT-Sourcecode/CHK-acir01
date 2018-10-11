@@ -33,6 +33,20 @@ public class CheckoutSolutionTest {
         assertThat(price, equalTo(-1));
     }
 
+    @Test
+    public void different_items(){
+        Integer price = checkoutSolution.checkout("DDAA");
+        assertThat(price, equalTo(130));
+
+        Integer price_with_special = checkoutSolution.checkout("DDAAA");
+        assertThat(price_with_special, equalTo(160));
+
+        Integer price_all_four = checkoutSolution.checkout("DBAC");
+        assertThat(price_with_special, equalTo(115));
+
+        Integer all_specials = checkoutSolution.checkout("ABABA");
+        assertThat(all_specials, equalTo(175));
+    }
 //    @Test
 //    public void incorrect_amount(){
 //        Integer price = checkoutSolution.checkout("fasA");

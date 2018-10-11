@@ -44,12 +44,17 @@ public class CheckoutSolution {
             itemsAmountMap.computeIfPresent(item_name, (k, v) -> v + 1);
             itemsAmountMap.computeIfAbsent(item_name, key -> 1);
         }
-        //remove items if there special match
-        for (String item : itemsAmountMap.keySet()) {
 
-        }
         //set amount for each Skus
         for (Skus item : priceOffersTable.values()) {
+            //remove items if there special match
+            //if have reducer
+            SpecialReducerItem reducer = item.getSpecialReducer();
+            
+            if (reducer != null) {
+
+            }
+
             Integer itemAmount = itemsAmountMap.get(item.getItem());
             if (itemAmount == null)
                 item.setAmount(0);

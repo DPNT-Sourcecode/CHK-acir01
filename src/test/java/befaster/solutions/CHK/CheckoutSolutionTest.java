@@ -22,6 +22,12 @@ public class CheckoutSolutionTest {
     }
 
     @Test
+    public void incorrect_amount_input_check(){
+        Integer price = checkoutSolution.checkout("-20B");
+        assertThat(price, equalTo(-1));
+    }
+
+    @Test
     public void get_price_a(){
 
         Integer price = checkoutSolution.checkout("2A");
@@ -35,6 +41,6 @@ public class CheckoutSolutionTest {
         assertThat(price_over_special, equalTo(230));
 
         Integer single_item = checkoutSolution.checkout("A");
-        assertThat(price_over_special, equalTo(50));
+        assertThat(single_item, equalTo(50));
     }
 }

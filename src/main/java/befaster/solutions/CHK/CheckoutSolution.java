@@ -39,7 +39,7 @@ public class CheckoutSolution {
                 return -1;
             }
             itemsAmountMap.computeIfPresent(item_name, (k, v) -> v + 1);
-            itemsAmountMap.computeIfAbsent(item_name, key -> itemsAmountMap.put(item_name, 1));
+            itemsAmountMap.computeIfAbsent(item_name, key -> 1);
         }
         //set amount for each Skus
 

@@ -11,11 +11,10 @@ public class CheckoutSolution {
     public CheckoutSolution ()
     {
         priceOffersTable = new HashMap<String,Skus>();
-
-        priceOffersTable.put("A", )
+        Skus A = new Skus(3, "A", 50, true,130);
     }
 
-    // input 2B, 3A, etc...
+    // input 2B, 3A, need to check out which kind of input
     public Integer checkout(String skus) {
         //get amount
         //get item
@@ -43,23 +42,11 @@ public class CheckoutSolution {
             this.amount = amount;
         }
 
-        public void setSpecialAmount(int specialAmount) {
+        public Skus(int specialAmount, String item, int price, boolean isSpecial, int specialPrice) {
             this.specialAmount = specialAmount;
-        }
-
-        public void setItem(String item) {
             this.item = item;
-        }
-
-        public void setPrice(int price) {
             this.price = price;
-        }
-
-        public void setSpecial(boolean special) {
-            isSpecial = special;
-        }
-
-        public void setSpecialPrice(int specialPrice) {
+            this.isSpecial = isSpecial;
             this.specialPrice = specialPrice;
         }
 

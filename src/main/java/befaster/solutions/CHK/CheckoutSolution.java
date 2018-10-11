@@ -33,8 +33,12 @@ public class CheckoutSolution {
         char[] items = skus.toCharArray();
 
         //count each item and check for non-correct items
-        HashMap<String, Integer> itemsAmountMap = new HashMap<>();
-
+        HashMap<String, Integer> itemsAmountMap;
+        try {
+            itemsAmountMap = getItemsAmountMap(items);
+        } catch (InvalidKeyException e) {
+            return -1;
+        }
 
         //set amount for each Skus
         setAmountOfItems(itemsAmountMap);
@@ -55,14 +59,13 @@ public class CheckoutSolution {
         return totalPrice;
     }
 
-    private HashMap<String, Integer> getItemsAmountMap(char[] items){
+    private HashMap<String, Integer> getItemsAmountMap(char[] items) throws InvalidKeyException {
         HashMap<String, Integer> itemsAmountMap = new HashMap<>();
         for (char c : items) {
             //incorrect product in table
             String item_name = Character.toString(c);
             if (!priceOffersTable.containsKey(item_name)) {
                 throw new InvalidKeyException("Invalid item");
-                return -1;
             }
             itemsAmountMap.computeIfPresent(item_name, (k, v) -> v + 1);
             itemsAmountMap.computeIfAbsent(item_name, key -> 1);
@@ -99,91 +102,6 @@ public class CheckoutSolution {
     }
 
     private class Skus {
-        private int amount;
-        // special amount
-        private Integer specialAmount;
 
-        // item
-        private String item;
-
-        private int price;
-        // is special
-        private boolean isSpecial;
-
-        // special price
-        private Integer specialPrice;
-
-
-        private SpecialReducerItem specialReducer;
-
-        public int getAmount() {
-            return amount;
-        }
-
-        public void setAmount(int amount) {
-            this.amount = amount;
-        }
-
-        public String getItemName() {
-            return item;
-        }
-
-        public boolean isReducerOf(String targetName) {
-            if (specialReducer == null)
-                return false;
-
-            return specialReducer.getReduceTarget().equals(targetName);
-        }
-
-        public SpecialReducerItem getSpecialReducer() {
-            return specialReducer;
-        }
-
-        public Skus(String item, int price, boolean isSpecial, Integer specialAmount, Integer specialPrice,
-                    SpecialReducerItem specialReducer) {
-            this.specialAmount = specialAmount;
-            this.item = item;
-            this.price = price;
-            this.isSpecial = isSpecial;
-            this.specialPrice = specialPrice;
-            this.specialReducer = specialReducer;
-        }
-
-        public int getTotalPrice() {
-            int totalPrice = 0;
-            //is have special price
-            if (isSpecial) {
-                //calculate amount of special bundles
-                totalPrice = (amount / specialAmount) * specialPrice;
-                //add left item with default price
-                totalPrice += (amount % specialAmount) * price;
-                return totalPrice;
-            }
-            //else return amount by price
-            return amount * price;
-        }
-    }
-
-    private class SpecialReducerItem {
-        private String reduceTarger;
-        private int reduceAmount;
-        private int triggerAmount;
-
-        public String getReduceTarget() {
-            return reduceTarger;
-        }
-
-        public SpecialReducerItem(String reduceTarger, int reduceAmount, int triggerAmount) {
-            this.reduceTarger = reduceTarger;
-            this.reduceAmount = reduceAmount;
-            this.triggerAmount = triggerAmount;
-        }
-
-        public int getReducedAmount(String target, int itemCount) {
-            if (!reduceTarger.equals(target))
-                return 0;
-
-            return reduceAmount * (itemCount / triggerAmount);
-        }
     }
 }

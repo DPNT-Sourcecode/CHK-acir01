@@ -78,5 +78,8 @@ public class CheckoutSolutionTest {
 
         Integer single_item = checkoutSolution.checkout("A");
         assertThat(single_item, equalTo(50));
+
+        Integer additional_one = checkoutSolution.checkout("AAAAAA");
+        assertThat(additional_one, equalTo(250));
     }
 }

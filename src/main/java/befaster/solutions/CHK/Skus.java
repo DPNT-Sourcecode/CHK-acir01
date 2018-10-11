@@ -70,8 +70,9 @@ public class Skus {
                     .toMap(Map.Entry::getKey,
                             Map.Entry::getValue,
                             (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+
             //key - bundle size. value - bundle price
-            for (Map.Entry<Integer, Integer> entry :) {
+            for (Map.Entry<Integer, Integer> entry : orderedSpecials.entrySet()) {
                 int bundleSize = entry.getKey();
                 if (leftAmount < bundleSize)
                     continue;

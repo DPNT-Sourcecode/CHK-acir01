@@ -49,6 +49,12 @@ public class CheckoutSolutionTest {
 
         Integer price_with_one_b = checkoutSolution.checkout("BBEE");
         assertThat(price_with_one_b, equalTo(110));
+
+        Integer only_ee = checkoutSolution.checkout("EE");
+        assertThat(only_ee, equalTo(80));
+
+        Integer no_reduction = checkoutSolution.checkout("BE");
+        assertThat(no_reduction, equalTo(80));
     }
 
     @Test

@@ -22,7 +22,7 @@ public class CheckoutSolution {
         priceOffersTable.put(E.getItemName(), E);
     }
 
-    // input 2B, 3A, need to check out which kind of input
+
     public Integer checkout(String skus) {
         if (skus == null)
             return -1;
@@ -99,9 +99,5 @@ public class CheckoutSolution {
                     item.setAmount(realAmount);
             }
         }
-    }
-
-    private class Skus {
-
     }
 }

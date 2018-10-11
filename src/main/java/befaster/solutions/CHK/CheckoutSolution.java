@@ -21,17 +21,15 @@ public class CheckoutSolution {
 
         Skus B = new Skus("B", 30, null, b_specials);
         Skus C = new Skus("C", 20, null, null);
-        Skus D = new Skus("D", 15, false, null, null,
-                null, null);
-        Skus E = new Skus("E", 40, false, null, null,
-                new SpecialReducerItem("B", 1, 2), null);
+        Skus D = new Skus("D", 15, null, null);
+        Skus E = new Skus("E", 40, new SpecialReducerItem("B", 1, 2),
+                null);
         SpecialReducerItem reducerF = new SpecialReducerItem("F", 1, 2);
 
         //treat reducer of f as special offer?
-        Map<Integer, Integer> F_specials = new HashMap<>();
-        F_specials.put(3, 20);
-        Skus F = new Skus("F", 10, true, null,
-                null, null, F_specials);
+        Map<Integer, Integer> f_specials = new HashMap<>();
+        f_specials.put(3, 20);
+        Skus F = new Skus("F", 10, null, f_specials);
         priceOffersTable.put(A.getItemName(), A);
         priceOffersTable.put(B.getItemName(), B);
         priceOffersTable.put(C.getItemName(), C);

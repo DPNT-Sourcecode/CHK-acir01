@@ -43,7 +43,6 @@ public class Skus {
     public Skus(String item, int price, SpecialReducerItem specialReducer, Map<Integer, Integer> specialOffersMap) {
         this.item = item;
         this.price = price;
-        this.isSpecial = isSpecial;
         this.specialReducer = specialReducer;
         this.specialOffersMap = specialOffersMap;
     }

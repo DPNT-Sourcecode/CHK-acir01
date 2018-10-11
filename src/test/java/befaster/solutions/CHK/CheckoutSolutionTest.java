@@ -100,9 +100,15 @@ public class CheckoutSolutionTest {
         assertThat(price, equalTo(20));
 
         Integer got_free_f = checkoutSolution.checkout("FFF");
-        assertThat(price, equalTo(20));
+        assertThat(got_free_f, equalTo(20));
 
         Integer additional = checkoutSolution.checkout("FFFF");
-        assertThat(price, equalTo(30));
+        assertThat(additional, equalTo(30));
+
+        Integer f5 = checkoutSolution.checkout("FFFFF");
+        assertThat(f5, equalTo(40));
+
+        Integer f6 = checkoutSolution.checkout("FFFFFF");
+        assertThat(f6, equalTo(40));
     }
 }

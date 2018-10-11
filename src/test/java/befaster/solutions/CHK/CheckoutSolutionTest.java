@@ -74,7 +74,6 @@ public class CheckoutSolutionTest {
         assertThat(price_special, equalTo(130));
 
         Integer price_over_special = checkoutSolution.checkout("AAAAA");
-        //2 by default price and 3 for special
         assertThat(price_over_special, equalTo(200));
 
         Integer single_item = checkoutSolution.checkout("A");

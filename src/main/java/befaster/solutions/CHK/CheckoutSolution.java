@@ -8,11 +8,12 @@ public class CheckoutSolution {
 
     public CheckoutSolution() {
         priceOffersTable = new HashMap<String, Skus>();
-        Skus A = new Skus("A", 50, true, 3, 130, false);
-        Skus B = new Skus("B", 30, true, 2, 45, false);
-        Skus C = new Skus("C", 20, false, null, null);
-        Skus D = new Skus("D", 15, false, null, null);
-
+        Skus A = new Skus("A", 50, true, 3, 130, null);
+        Skus B = new Skus("B", 30, true, 2, 45, null);
+        Skus C = new Skus("C", 20, false, null, null, null);
+        Skus D = new Skus("D", 15, false, null, null, null);
+        Skus E = new Skus("E", 40, false, null, null,
+                new SpecialReducerItem("B", 1, 2));
         priceOffersTable.put(A.getItem(), A);
         priceOffersTable.put(B.getItem(), B);
         priceOffersTable.put(C.getItem(), C);
@@ -74,9 +75,8 @@ public class CheckoutSolution {
         // special price
         private Integer specialPrice;
 
-        private Boolean specialReducer;
 
-        private SpecialReducerItem specialReducerAmount;
+        private SpecialReducerItem specialReducer;
 
 
         public void setAmount(int amount) {
@@ -87,6 +87,9 @@ public class CheckoutSolution {
             return item;
         }
 
+        public SpecialReducerItem getSpecialReducer() {
+            return specialReducer;
+        }
 
         public Skus(String item, int price, boolean isSpecial, Integer specialAmount, Integer specialPrice,
                     SpecialReducerItem specialReducer) {
@@ -116,10 +119,12 @@ public class CheckoutSolution {
     private class SpecialReducerItem {
         private String reduceTarger;
         private int reduceAmount;
+        private int triggerAmount;
 
-        public SpecialReducerItem(String reduceTarger, int reduceAmount) {
+        public SpecialReducerItem(String reduceTarger, int reduceAmount, int triggerAmount) {
             this.reduceTarger = reduceTarger;
             this.reduceAmount = reduceAmount;
+            this.triggerAmount = triggerAmount;
         }
     }
 }

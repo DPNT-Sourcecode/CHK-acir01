@@ -46,30 +46,28 @@ public class CheckoutSolution {
 
         //set amount for each Skus
         for (Skus item : priceOffersTable.values()) {
-            //remove items if there special match
-            //if have reducer
-
-
             Integer itemAmount = itemsAmountMap.get(item.getItemName());
             if (itemAmount == null)
                 item.setAmount(0);
             else {
-                //find reducer of this item
-                Skus withReducer = priceOffersTable.values().stream().
-                        filter(x -> x.isReducerOf(item.getItemName())).findFirst().orElse(null);
-                SpecialReducerItem reducer = withReducer == null ? null : withReducer.getSpecialReducer();
-
-                if (reducer != null) {
-                    int amountToReduce = reducer.getReducedAmount(item.getItemName(), itemAmount);
-                    int realAmount = itemAmount - amountToReduce;
-                    if (realAmount < 0)
-                        item.setAmount(0);
-                    else
-                        item.setAmount(realAmount);
-                } else
-                    item.setAmount(itemAmount);
+                item.setAmount(itemAmount);
             }
+        }
 
+        //reduce items amount if reduction is applicable 
+        for (Skus item : priceOffersTable.values()) {
+            Skus withReducer = priceOffersTable.values().stream().
+                    filter(x -> x.isReducerOf(item.getItemName())).findFirst().orElse(null);
+            SpecialReducerItem reducer = withReducer == null ? null : withReducer.getSpecialReducer();
+            int itemAmount = item.getAmount();
+            if (reducer != null) {
+                int amountToReduce = reducer.getReducedAmount(item.getItemName(), withReducer.getAmount());
+                int realAmount = itemAmount - amountToReduce;
+                if (realAmount < 0)
+                    item.setAmount(0);
+                else
+                    item.setAmount(realAmount);
+            }
         }
 
         //calculate total price of each item
@@ -98,6 +96,9 @@ public class CheckoutSolution {
 
         private SpecialReducerItem specialReducer;
 
+        public int getAmount() {
+            return amount;
+        }
 
         public void setAmount(int amount) {
             this.amount = amount;

@@ -1,6 +1,9 @@
 package befaster.solutions.CHK;
 
+import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Skus {
     private int amount;
@@ -60,10 +63,17 @@ public class Skus {
         //is have special price
         if (isSpecial) {
             int leftAmount = amount;
+            Map<Integer, Integer> orderedSpecials = specialOffersMap.entrySet().
+                    stream().
+                    sorted(Map.Entry.comparingByKey(Comparator
+                            .reverseOrder())).collect(Collectors
+                    .toMap(Map.Entry::getKey,
+                            Map.Entry::getValue,
+                            (oldValue, newValue) -> oldValue, LinkedHashMap::new));
             //key - bundle size. value - bundle price
-            for (Map.Entry<Integer, Integer> entry : specialOffersMap.entrySet()) {
+            for (Map.Entry<Integer, Integer> entry :) {
                 int bundleSize = entry.getKey();
-                if(leftAmount < bundleSize)
+                if (leftAmount < bundleSize)
                     continue;
                 totalPrice += (leftAmount / bundleSize) * entry.getValue();
                 leftAmount = (leftAmount % bundleSize);

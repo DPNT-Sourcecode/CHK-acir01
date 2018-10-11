@@ -32,14 +32,14 @@ public class CheckoutSolution {
 
         //count each item and check for correct items
         HashMap<String, Integer> itemsAmountMap = new HashMap<>();
-        for(char c : items){
+        for (char c : items) {
             //incorrect product in table
             String item_name = Character.toString(c);
-            if (!priceOffersTable.containsKey(item_name)){
+            if (!priceOffersTable.containsKey(item_name)) {
                 return -1;
             }
-
-            //if
+            itemsAmountMap.computeIfPresent(item_name, (k, v) -> v + 1);
+            
         }
         //set amount for each Skus
 

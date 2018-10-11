@@ -62,8 +62,11 @@ public class Skus {
             int leftAmount = amount;
             //key - bundle size. value - bundle price
             for (Map.Entry<Integer, Integer> entry : specialOffersMap.entrySet()) {
-                totalPrice += (leftAmount / entry.getKey()) * entry.getValue();
-                leftAmount = (leftAmount % entry.getKey());
+                int bundleSize = entry.getKey();
+                if(leftAmount < bundleSize)
+                    continue;
+                totalPrice += (leftAmount / bundleSize) * entry.getValue();
+                leftAmount = (leftAmount % bundleSize);
             }
             //last items not in available bundles goes by default price
             totalPrice += leftAmount * price;

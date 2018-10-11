@@ -28,6 +28,18 @@ public class CheckoutSolutionTest {
     }
 
     @Test
+    public void incorrect_input(){
+        Integer price = checkoutSolution.checkout("FA1rf1f2");
+        assertThat(price, equalTo(-1));
+    }
+
+    @Test
+    public void incorrect_amount(){
+        Integer price = checkoutSolution.checkout("fasA");
+        assertThat(price, equalTo(-1));
+    }
+
+    @Test
     public void no_specials_check(){
         Integer price = checkoutSolution.checkout("2C");
         assertThat(price, equalTo(40));

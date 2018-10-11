@@ -21,12 +21,6 @@ public class CheckoutSolutionTest {
         assertThat(price, equalTo(0));
     }
 
-//    @Test
-//    public void negative_amount(){
-//        Integer price = checkoutSolution.checkout("-20B");
-//        assertThat(price, equalTo(-1));
-//    }
-
     @Test
     public void incorrect_input(){
         Integer price = checkoutSolution.checkout("FA1rf1f2");
@@ -47,11 +41,12 @@ public class CheckoutSolutionTest {
         Integer all_specials = checkoutSolution.checkout("ABABA");
         assertThat(all_specials, equalTo(175));
     }
-//    @Test
-//    public void incorrect_amount(){
-//        Integer price = checkoutSolution.checkout("fasA");
-//        assertThat(price, equalTo(-1));
-//    }
+
+    @Test
+    public void test_reducer(){
+        Integer price = checkoutSolution.checkout("BEE");
+        assertThat(price, equalTo(80));
+    }
 
     @Test
     public void no_specials_check(){

@@ -49,17 +49,25 @@ public class CheckoutSolution {
         for (Skus item : priceOffersTable.values()) {
             //remove items if there special match
             //if have reducer
-            SpecialReducerItem reducer = item.getSpecialReducer();
-            
-            if (reducer != null) {
 
-            }
 
             Integer itemAmount = itemsAmountMap.get(item.getItem());
             if (itemAmount == null)
                 item.setAmount(0);
-            else
-                item.setAmount(itemAmount);
+            else {
+                SpecialReducerItem reducer = item.getSpecialReducer();
+
+                if (reducer != null) {
+                    int amountToReduce = reducer.getReducedAmount(item.getItem(), itemAmount);
+                    int realAmount = itemAmount - amountToReduce;
+                    if (realAmount < 0)
+                        item.setAmount(0);
+                    else
+                        item.setAmount(realAmount);
+                } else
+                    item.setAmount(itemAmount);
+            }
+
         }
         //calculate total price of each item
         int totalPrice = 0;

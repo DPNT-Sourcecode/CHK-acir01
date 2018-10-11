@@ -63,6 +63,13 @@ public class CheckoutSolutionTest {
         assertThat(price, equalTo(40));
     }
 
+    @Test
+    public void combined_specials(){
+        //3B 9A 2E
+        //330 + 45 + 80
+        Integer price = checkoutSolution.checkout("BEEAAAAAAAAABB");
+        assertThat(price, equalTo(330+45+80));
+    }
 
     @Test
     public void get_price_a(){
@@ -81,5 +88,9 @@ public class CheckoutSolutionTest {
 
         Integer additional_one = checkoutSolution.checkout("AAAAAA");
         assertThat(additional_one, equalTo(250));
+
+        //5A and 3A
+        Integer two_specials_in_a_row = checkoutSolution.checkout("AAAAAAAA");
+        assertThat(two_specials_in_a_row, equalTo(330));
     }
 }

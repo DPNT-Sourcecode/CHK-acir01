@@ -29,10 +29,18 @@ public class CheckoutSolution {
         //first is amount
         String item = skus.substring(skus.length() - 1);
         String amount_s = skus.substring(0, skus.length() - 1);
-        Integer amount = Integer.parseInt(amount_s);
-        Skus toCalculate = priceOffersTable.get(item);
-        toCalculate.setAmount(amount);
 
+        Integer amount;
+        if (amount_s.isEmpty())
+            amount = 1;
+        else
+            amount = Integer.parseInt(amount_s);
+        Skus toCalculate = priceOffersTable.get(item);
+        //no items exist
+        if(toCalculate == null)
+            return -1;
+
+        toCalculate.setAmount(amount);
         return toCalculate.getTotalPrice();
     }
 

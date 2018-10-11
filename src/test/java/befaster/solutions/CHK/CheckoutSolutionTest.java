@@ -16,6 +16,12 @@ public class CheckoutSolutionTest {
     }
 
     @Test
+    public void empty_input_check(){
+        Integer price = checkoutSolution.checkout("");
+        assertThat(price, equalTo(-1));
+    }
+
+    @Test
     public void get_price_a(){
 
         Integer price = checkoutSolution.checkout("2A");

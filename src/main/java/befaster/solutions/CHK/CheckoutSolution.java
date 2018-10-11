@@ -1,6 +1,7 @@
 package befaster.solutions.CHK;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class CheckoutSolution {
     //offers table
@@ -44,7 +45,9 @@ public class CheckoutSolution {
             itemsAmountMap.computeIfAbsent(item_name, key -> 1);
         }
         //remove items if there special match
-        for()
+        for (String item : itemsAmountMap.keySet()) {
+
+        }
         //set amount for each Skus
         for (Skus item : priceOffersTable.values()) {
             Integer itemAmount = itemsAmountMap.get(item.getItem());
@@ -126,6 +129,13 @@ public class CheckoutSolution {
             this.reduceTarger = reduceTarger;
             this.reduceAmount = reduceAmount;
             this.triggerAmount = triggerAmount;
+        }
+
+        public int getReducedAmount(String target, int itemCount) {
+            if (!reduceTarger.equals(target))
+                return 0;
+
+            return reduceAmount * (itemCount / triggerAmount);
         }
     }
 }

@@ -55,8 +55,9 @@ public class CheckoutSolution {
                 item.setAmount(0);
             else {
                 //find reducer of this item
-                SpecialReducerItem reducer = priceOffersTable.values().stream().
+                Skus withReducer = priceOffersTable.values().stream().
                         filter(x -> x.isReducerOf(item.getItemName())).findFirst().orElse(null);
+                SpecialReducerItem reducer = withReducer == null ? null : withReducer.getSpecialReducer();
 
                 if (reducer != null) {
                     int amountToReduce = reducer.getReducedAmount(item.getItemName(), itemAmount);

@@ -55,31 +55,6 @@ public class CheckoutSolution {
             totalPrice += item.getTotalPrice();
         }
         return totalPrice;
-
-//        String item = skus.substring(skus.length() - 1);
-//        String amount_s = skus.substring(0, skus.length() - 1);
-//
-//        Integer amount;
-//        if (amount_s.isEmpty())
-//            amount = 1;
-//        else {
-//            try {
-//                amount = Integer.parseInt(amount_s);
-//            } catch (NumberFormatException ex) {
-//                return -1;
-//            }
-//        }
-//        //amount is negative
-//        if (amount < 1)
-//            return -1;
-//
-//        Skus toCalculate = priceOffersTable.get(item);
-//        //no items exist
-//        if (toCalculate == null)
-//            return -1;
-//
-//        toCalculate.setAmount(amount);
-//        return toCalculate.getTotalPrice();
     }
 
     private class Skus {

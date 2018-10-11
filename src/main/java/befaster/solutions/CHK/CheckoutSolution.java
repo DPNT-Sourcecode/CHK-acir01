@@ -10,9 +10,9 @@ public class CheckoutSolution {
 
     public CheckoutSolution ()
     {
-        priceOffersTable = new HashMap<?,?>(){
-            
-        }
+        priceOffersTable = new HashMap<String,Skus>();
+
+        priceOffersTable.put("A", )
     }
 
     // input 2B, 3A, etc...

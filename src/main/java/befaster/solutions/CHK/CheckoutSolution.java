@@ -29,6 +29,7 @@ public class CheckoutSolution {
         //treat reducer of f as special offer?
         Map<Integer, Integer> f_specials = new HashMap<>();
         f_specials.put(3, 20);
+
         Skus F = new Skus("F", 10, null, f_specials);
         priceOffersTable.put(A.getItemName(), A);
         priceOffersTable.put(B.getItemName(), B);

@@ -28,10 +28,16 @@ public class CheckoutSolution {
             return 0;
 
         //match amount of letters
-        Char[] items = skus.toCharArray();
+        char[] items = skus.toCharArray();
 
-        //count each item
-
+        //count each item and check for correct items
+        HashMap<String, Integer> itemsAmountMap = new HashMap<>();
+        for(char c : items){
+            //incorrect product in table
+            if (!priceOffersTable.containsKey(c.toString())){
+                return -1;
+            }
+        }
         //set amount for each Skus
 
         //calculate total price of each item

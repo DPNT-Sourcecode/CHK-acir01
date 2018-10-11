@@ -46,6 +46,9 @@ public class CheckoutSolutionTest {
     public void test_reducer(){
         Integer price = checkoutSolution.checkout("BEE");
         assertThat(price, equalTo(80));
+
+        Integer price_with_one_b = checkoutSolution.checkout("BBEE");
+        assertThat(price_with_one_b, equalTo(110));
     }
 
     @Test

@@ -54,7 +54,18 @@ public class CheckoutSolution {
             }
         }
 
-        //reduce items amount if reduction is applicable 
+        //reduce items amount if reduction is applicable
+        applyFreeItemsSpecials();
+
+        //calculate total price of each item
+        int totalPrice = 0;
+        for (Skus item : priceOffersTable.values()) {
+            totalPrice += item.getTotalPrice();
+        }
+        return totalPrice;
+    }
+
+    private void applyFreeItemsSpecials() {
         for (Skus item : priceOffersTable.values()) {
             Skus withReducer = priceOffersTable.values().stream().
                     filter(x -> x.isReducerOf(item.getItemName())).findFirst().orElse(null);
@@ -69,13 +80,6 @@ public class CheckoutSolution {
                     item.setAmount(realAmount);
             }
         }
-
-        //calculate total price of each item
-        int totalPrice = 0;
-        for (Skus item : priceOffersTable.values()) {
-            totalPrice += item.getTotalPrice();
-        }
-        return totalPrice;
     }
 
     private class Skus {

@@ -33,11 +33,20 @@ public class CheckoutSolution {
         Integer amount;
         if (amount_s.isEmpty())
             amount = 1;
-        else
-            amount = Integer.parseInt(amount_s);
+        else {
+            try {
+                amount = Integer.parseInt(amount_s);
+            } catch (NumberFormatException ex) {
+                return -1;
+            }
+        }
+        //amount is negative
+        if (amount < 1)
+            return -1;
+
         Skus toCalculate = priceOffersTable.get(item);
         //no items exist
-        if(toCalculate == null)
+        if (toCalculate == null)
             return -1;
 
         toCalculate.setAmount(amount);

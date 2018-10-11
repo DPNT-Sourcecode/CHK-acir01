@@ -22,10 +22,17 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void incorrect_amount_input_check(){
+    public void negative_amount(){
         Integer price = checkoutSolution.checkout("-20B");
         assertThat(price, equalTo(-1));
     }
+
+    @Test
+    public void no_specials_check(){
+        Integer price = checkoutSolution.checkout("2C");
+        assertThat(price, equalTo(40));
+    }
+
 
     @Test
     public void get_price_a(){

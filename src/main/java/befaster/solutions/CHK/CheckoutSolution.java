@@ -18,6 +18,7 @@ public class CheckoutSolution {
         priceOffersTable.put(B.getItem(), B);
         priceOffersTable.put(C.getItem(), C);
         priceOffersTable.put(D.getItem(), D);
+        priceOffersTable.put(E.getItem(), E);
     }
 
     // input 2B, 3A, need to check out which kind of input
@@ -43,7 +44,7 @@ public class CheckoutSolution {
             itemsAmountMap.computeIfAbsent(item_name, key -> 1);
         }
         //remove items if there special match
-
+        for()
         //set amount for each Skus
         for (Skus item : priceOffersTable.values()) {
             Integer itemAmount = itemsAmountMap.get(item.getItem());

@@ -6,22 +6,22 @@ public class CheckoutSolution {
     //offers table
     private HashMap<String, Skus> priceOffersTable;
 
-    public CheckoutSolution ()
-    {
-        priceOffersTable = new HashMap<String,Skus>();
+    public CheckoutSolution() {
+        priceOffersTable = new HashMap<String, Skus>();
         Skus A = new Skus("A", 50, true, 3, 130);
         Skus B = new Skus("B", 30, true, 2, 45);
         Skus C = new Skus("C", 20, false, null, null);
         Skus D = new Skus("D", 15, false, null, null);
+
+        priceOffersTable.put(A.getItem(), A);
+        priceOffersTable.put(B.getItem(), B);
+        priceOffersTable.put(C.getItem(), C);
+        priceOffersTable.put(D.getItem(), D);
     }
 
     // input 2B, 3A, need to check out which kind of input
     public Integer checkout(String skus) {
-        //get amount
-        //get item
-        //check if item have special offers
-
-
+        
     }
 
     private class Skus {
@@ -41,6 +41,10 @@ public class CheckoutSolution {
 
         public void setAmount(int amount) {
             this.amount = amount;
+        }
+
+        public String getItem() {
+            return item;
         }
 
         public Skus(String item, int price, boolean isSpecial, Integer specialAmount, Integer specialPrice) {

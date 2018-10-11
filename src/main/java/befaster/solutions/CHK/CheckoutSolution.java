@@ -10,9 +10,10 @@ public class CheckoutSolution {
 
     public CheckoutSolution() {
         priceOffersTable = new HashMap<String, Skus>();
+        //order of specials is IMPORTANT
         Map<Integer, Integer> a_specials = new HashMap<>();
-        a_specials.put(3, 130);
-        a_specials.put(5, 200);
+        a_specials.put(5, 130);
+        a_specials.put(3, 200);
         Skus A = new Skus("A", 50, true, 3, 130, null, a_specials);
 
         Map<Integer, Integer> b_specials = new HashMap<>();

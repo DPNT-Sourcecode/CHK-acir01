@@ -1,7 +1,6 @@
 package befaster.solutions.CHK;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class CheckoutSolution {
     //offers table
@@ -15,11 +14,11 @@ public class CheckoutSolution {
         Skus D = new Skus("D", 15, false, null, null, null);
         Skus E = new Skus("E", 40, false, null, null,
                 new SpecialReducerItem("B", 1, 2));
-        priceOffersTable.put(A.getItem(), A);
-        priceOffersTable.put(B.getItem(), B);
-        priceOffersTable.put(C.getItem(), C);
-        priceOffersTable.put(D.getItem(), D);
-        priceOffersTable.put(E.getItem(), E);
+        priceOffersTable.put(A.getItemName(), A);
+        priceOffersTable.put(B.getItemName(), B);
+        priceOffersTable.put(C.getItemName(), C);
+        priceOffersTable.put(D.getItemName(), D);
+        priceOffersTable.put(E.getItemName(), E);
     }
 
     // input 2B, 3A, need to check out which kind of input
@@ -51,15 +50,16 @@ public class CheckoutSolution {
             //if have reducer
 
 
-            Integer itemAmount = itemsAmountMap.get(item.getItem());
+            Integer itemAmount = itemsAmountMap.get(item.getItemName());
             if (itemAmount == null)
                 item.setAmount(0);
             else {
                 //find reducer of this item
-                SpecialReducerItem reducer = priceOffersTable.values()
+                SpecialReducerItem reducer = priceOffersTable.values().stream().
+                        filter(x -> x.isReducerOf(item.getItemName())).findFirst().orElse(null);
 
                 if (reducer != null) {
-                    int amountToReduce = reducer.getReducedAmount(item.getItem(), itemAmount);
+                    int amountToReduce = reducer.getReducedAmount(item.getItemName(), itemAmount);
                     int realAmount = itemAmount - amountToReduce;
                     if (realAmount < 0)
                         item.setAmount(0);
@@ -102,7 +102,7 @@ public class CheckoutSolution {
             this.amount = amount;
         }
 
-        public String getItem() {
+        public String getItemName() {
             return item;
         }
 

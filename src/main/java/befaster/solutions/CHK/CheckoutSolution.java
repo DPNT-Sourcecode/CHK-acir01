@@ -42,38 +42,44 @@ public class CheckoutSolution {
             itemsAmountMap.computeIfAbsent(item_name, key -> 1);
         }
         //set amount for each Skus
-
+        for (Skus item : priceOffersTable.values()) {
+            Integer itemAmount = itemsAmountMap.get(item.getItem());
+            if (itemAmount == null)
+                item.setAmount(0);
+            else
+                item.setAmount(itemAmount);
+        }
         //calculate total price of each item
         int totalPrice = 0;
         for (Skus item : priceOffersTable.values()) {
             totalPrice += item.getTotalPrice();
         }
+        return totalPrice;
 
-
-        String item = skus.substring(skus.length() - 1);
-        String amount_s = skus.substring(0, skus.length() - 1);
-
-        Integer amount;
-        if (amount_s.isEmpty())
-            amount = 1;
-        else {
-            try {
-                amount = Integer.parseInt(amount_s);
-            } catch (NumberFormatException ex) {
-                return -1;
-            }
-        }
-        //amount is negative
-        if (amount < 1)
-            return -1;
-
-        Skus toCalculate = priceOffersTable.get(item);
-        //no items exist
-        if (toCalculate == null)
-            return -1;
-
-        toCalculate.setAmount(amount);
-        return toCalculate.getTotalPrice();
+//        String item = skus.substring(skus.length() - 1);
+//        String amount_s = skus.substring(0, skus.length() - 1);
+//
+//        Integer amount;
+//        if (amount_s.isEmpty())
+//            amount = 1;
+//        else {
+//            try {
+//                amount = Integer.parseInt(amount_s);
+//            } catch (NumberFormatException ex) {
+//                return -1;
+//            }
+//        }
+//        //amount is negative
+//        if (amount < 1)
+//            return -1;
+//
+//        Skus toCalculate = priceOffersTable.get(item);
+//        //no items exist
+//        if (toCalculate == null)
+//            return -1;
+//
+//        toCalculate.setAmount(amount);
+//        return toCalculate.getTotalPrice();
     }
 
     private class Skus {

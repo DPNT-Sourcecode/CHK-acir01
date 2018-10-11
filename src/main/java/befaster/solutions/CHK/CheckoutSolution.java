@@ -1,5 +1,6 @@
 package befaster.solutions.CHK;
 
+import java.security.InvalidKeyException;
 import java.util.HashMap;
 
 public class CheckoutSolution {
@@ -29,22 +30,47 @@ public class CheckoutSolution {
         if (skus.isEmpty())
             return 0;
 
-        //match amount of letters
         char[] items = skus.toCharArray();
 
-        //count each item and check for correct items
+        //count each item and check for non-correct items
+        HashMap<String, Integer> itemsAmountMap = new HashMap<>();
+
+
+        //set amount for each Skus
+        setAmountOfItems(itemsAmountMap);
+
+        //reduce items amount if reduction is applicable
+        applyFreeItemsSpecials();
+
+        //calculate total price of each item
+        int totalPrice = calculateTotalPrice();
+        return totalPrice;
+    }
+
+    private int calculateTotalPrice() {
+        int totalPrice = 0;
+        for (Skus item : priceOffersTable.values()) {
+            totalPrice += item.getTotalPrice();
+        }
+        return totalPrice;
+    }
+
+    private HashMap<String, Integer> getItemsAmountMap(char[] items){
         HashMap<String, Integer> itemsAmountMap = new HashMap<>();
         for (char c : items) {
             //incorrect product in table
             String item_name = Character.toString(c);
             if (!priceOffersTable.containsKey(item_name)) {
+                throw new InvalidKeyException("Invalid item");
                 return -1;
             }
             itemsAmountMap.computeIfPresent(item_name, (k, v) -> v + 1);
             itemsAmountMap.computeIfAbsent(item_name, key -> 1);
         }
+        return itemsAmountMap;
+    }
 
-        //set amount for each Skus
+    private void setAmountOfItems(HashMap<String, Integer> itemsAmountMap) {
         for (Skus item : priceOffersTable.values()) {
             Integer itemAmount = itemsAmountMap.get(item.getItemName());
             if (itemAmount == null)
@@ -53,16 +79,6 @@ public class CheckoutSolution {
                 item.setAmount(itemAmount);
             }
         }
-
-        //reduce items amount if reduction is applicable
-        applyFreeItemsSpecials();
-
-        //calculate total price of each item
-        int totalPrice = 0;
-        for (Skus item : priceOffersTable.values()) {
-            totalPrice += item.getTotalPrice();
-        }
-        return totalPrice;
     }
 
     private void applyFreeItemsSpecials() {

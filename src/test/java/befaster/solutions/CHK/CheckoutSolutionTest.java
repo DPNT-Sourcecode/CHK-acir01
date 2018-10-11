@@ -68,7 +68,7 @@ public class CheckoutSolutionTest {
         //3B 9A 2E
         //330 + 45 + 80
         Integer price = checkoutSolution.checkout("BEEAAAAAAAAABB");
-        assertThat(price, equalTo(330+45+80));
+        assertThat(price, equalTo(330+50+45+80));
     }
 
     @Test

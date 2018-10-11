@@ -21,7 +21,14 @@ public class CheckoutSolution {
 
     // input 2B, 3A, need to check out which kind of input
     public Integer checkout(String skus) {
-        
+        if (skus == null || skus.isEmpty())
+            return -1;
+
+        //parse string
+        //last part is item type
+        //first is amount
+        String item = skus.substring(skus.length() - 1);
+        String amount_s = skus.substring(0, skus.length() - 1);
     }
 
     private class Skus {

@@ -34,6 +34,7 @@ public class CheckoutSolution {
         priceOffersTable.put(C.getItemName(), C);
         priceOffersTable.put(D.getItemName(), D);
         priceOffersTable.put(E.getItemName(), E);
+        priceOffersTable.put(F.getItemName(), F);
     }
 
 

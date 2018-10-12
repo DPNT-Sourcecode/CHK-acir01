@@ -82,12 +82,13 @@ public class SKUParser {
                 groupDiscountedItem = true;
                 String cleanData = offer.
                         replace("buy any ", "").
-                        replace("of","").
-                        replace("for","");
+                        replace("of", "").
+                        replace("for", "");
+                String[] params = cleanData.split("\\s+");
 
-                
-                groupDiscount.setGroupPrice();
-                groupDiscount.setTriggerAmount();
+
+                groupDiscount.setGroupPrice(Integer.parseInt(params[1]));
+                groupDiscount.setTriggerAmount(Integer.parseInt(params[0]));
             } else {
                 String[] parts = offer.split("for");
                 String bundleDef = parts[0].trim();
@@ -97,8 +98,9 @@ public class SKUParser {
             }
         }
         SKU s = new SKU(itemName, itemPrice, reducerItem, specials);
-        if(groupDiscountedItem){
-
+        if (groupDiscountedItem) {
+            groupDiscount.addGroupItem(s);
+            groupDiscountedItem = false;
         }
 
         return s;

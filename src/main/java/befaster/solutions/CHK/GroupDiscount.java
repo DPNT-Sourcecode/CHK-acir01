@@ -8,10 +8,6 @@ public class GroupDiscount {
         return groupItems;
     }
 
-    public void setGroupItems(List<SKU> groupItems) {
-        this.groupItems = groupItems;
-    }
-
     public int getGroupPrice() {
         return groupPrice;
     }
@@ -28,10 +24,13 @@ public class GroupDiscount {
         this.triggerAmount = triggerAmount;
     }
 
-    private List<SKU> groupItems;
+    private List<SKU> groupItems = new List<SKU>();
 
     private int groupPrice;
 
     private int triggerAmount;
 
+    public void addGroupItem(SKU s) {
+        groupItems.add(s);
+    }
 }

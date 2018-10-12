@@ -80,8 +80,10 @@ public class CheckoutSolution {
     }
 
     private int calculateTotalPrice() {
-        int totalPrice = 0;
-        priceOffersTable.values().stream().filter(f->!f.isInGroupDiscount()).reduce(sku ->)
+        int totalPrice = priceOffersTable.values().stream().
+                filter(f -> !f.isInGroupDiscount())
+                .map(d -> d.getTotalPrice()).
+                reduce(0, (n, o) -> n + o);
         return totalPrice;
     }
 
@@ -93,7 +95,7 @@ public class CheckoutSolution {
         //order group items by item price
 
         //fill by 3 each group till the end of group items
-
+        return 0;
     }
 
     private HashMap<String, Integer> getItemsAmountMap(char[] items) throws InvalidKeyException {

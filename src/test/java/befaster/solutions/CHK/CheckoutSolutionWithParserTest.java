@@ -8,13 +8,14 @@ import java.io.IOException;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-public class CheckoutSolutionTest {
+public class CheckoutSolutionWithParserTest {
 
     private CheckoutSolution checkoutSolution;
 
     @Before
     public void setUp() throws IOException {
         checkoutSolution = new CheckoutSolution();
+        checkoutSolution.setSkuParser(new SKUParser("G:\\Repos\\accelerate-challenge\\tdl-runner-java\\src\\main\\resources\\skus"));
     }
 
     @Test

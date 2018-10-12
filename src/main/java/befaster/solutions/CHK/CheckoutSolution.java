@@ -8,8 +8,13 @@ import java.util.Map;
 public class CheckoutSolution {
     //offers table
     private HashMap<String, SKU> priceOffersTable;
+    private SKUParser skuParser;
 
-    public CheckoutSolution(SKUParser skuParser) throws IOException {
+    public void setSkuParser(SKUParser skuParser) {
+        this.skuParser = skuParser;
+    }
+
+    public CheckoutSolution() {
 
 //        OldInitialization();
     }
@@ -46,9 +51,15 @@ public class CheckoutSolution {
         priceOffersTable = new HashMap<String, SKU>();
         if (skuParser == null)
             OldInitialization();
-        else
-            priceOffersTable = skuParser.parse();
-        
+        else {
+            try {
+                priceOffersTable = skuParser.parse();
+            } catch (IOException e) {
+                return -1;
+            }
+
+        }
+
         if (skus == null)
             return -1;
 

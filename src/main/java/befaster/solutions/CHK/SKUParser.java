@@ -48,7 +48,7 @@ public class SKUParser {
 
         //split offers
         String[] offers = null;
-        if(offersString.startsWith("buy any")){
+        if(offersString.startsWith(" buy any")){
             offers = new String[] {
                     offersString
             };
@@ -89,14 +89,14 @@ public class SKUParser {
                 }
             } else if (of == OfferType.GroupDiscount) {
                 groupDiscountedItem = true;
-                String cleanData = offer.
+                String cleanData = offer.trim().
                         replace("buy any ", "").
                         replace("of", "").
                         replace("for", "");
                 String[] params = cleanData.split("\\s+");
 
 
-                groupDiscount.setGroupPrice(Integer.parseInt(params[1]));
+                groupDiscount.setGroupPrice(Integer.parseInt(params[2]));
                 groupDiscount.setTriggerAmount(Integer.parseInt(params[0]));
             } else {
                 String[] parts = offer.split("for");
@@ -118,7 +118,7 @@ public class SKUParser {
 
     private OfferType getOfferType(String offer) {
         OfferType of = null;
-        if (offer.startsWith("buy any"))
+        if (offer.startsWith(" buy any"))
             return OfferType.GroupDiscount;
         if (offer.contains("for"))
             of = OfferType.Special;

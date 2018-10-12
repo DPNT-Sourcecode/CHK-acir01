@@ -81,9 +81,9 @@ public class CheckoutSolution {
 
     private int calculateTotalPrice() {
         int totalPrice = 0;
-        for (SKU item : priceOffersTable.values()) {
-            totalPrice += item.getTotalPrice();
-        }
+        priceOffersTable.values().stream().filter(f->!f.isInGroupDiscount()).forEach(sku ->{
+            totalPrice += sku.getTotalPrice();
+        });
         return totalPrice;
     }
 

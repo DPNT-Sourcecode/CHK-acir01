@@ -99,6 +99,7 @@ public class SKUParser {
         }
         SKU s = new SKU(itemName, itemPrice, reducerItem, specials);
         if (groupDiscountedItem) {
+            s.setGroupDiscount(groupDiscount);
             groupDiscount.addGroupItem(s);
             groupDiscountedItem = false;
         }

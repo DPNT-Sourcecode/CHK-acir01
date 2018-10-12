@@ -1,5 +1,6 @@
 package befaster.solutions.CHK;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GroupDiscount {
@@ -24,7 +25,7 @@ public class GroupDiscount {
         this.triggerAmount = triggerAmount;
     }
 
-    private List<SKU> groupItems = new List<SKU>();
+    private List<SKU> groupItems = new ArrayList<>();
 
     private int groupPrice;
 

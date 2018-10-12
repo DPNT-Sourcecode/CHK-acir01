@@ -145,7 +145,7 @@ public class CheckoutSolutionWithParserTest {
         assertThat(price2, equalTo(45));
 
         Integer with_one_left = checkoutSolution.checkout("ZZZY");
-        assertThat(with_one_left, equalTo(45+17));
+        assertThat(with_one_left, equalTo(45+20));
 
         Integer with_two_left = checkoutSolution.checkout("ZZZYX");
         assertThat(with_two_left, equalTo(45+37));

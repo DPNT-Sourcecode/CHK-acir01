@@ -1,7 +1,6 @@
 package befaster.solutions.CHK;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
@@ -16,12 +15,15 @@ public class SKUParser {
         this.units = new HashMap<>();
     }
 
-    public HashMap<String, SKU> parse() throws IOException, URISyntaxException {
+    public HashMap<String, SKU> parse() throws IOException {
 
         //read line of file
 
-        try (Stream<String> stream = Files.lines(Paths.get(ClassLoader.getSystemResource(filePath).toURI()))) {
-            stream.forEach(line -> parseLine(line));
+        try (Stream<String> stream = Files.lines(Paths.get(filePath))) {
+            stream.forEach(line -> {
+                SKU sku = parseLine(line);
+                units.put(sku.getItemName(), sku);
+            });
         }
         return units;
     }

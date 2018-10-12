@@ -11,6 +11,10 @@ public class CheckoutSolution {
     public CheckoutSolution() {
         priceOffersTable = new HashMap<String, SKU>();
 
+//        OldInitialization();
+    }
+
+    private void OldInitialization() {
         Map<Integer, Integer> a_specials = new HashMap<>();
         a_specials.put(3, 130);
         a_specials.put(5, 200);

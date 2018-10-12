@@ -15,6 +15,21 @@ public class SKU {
 
     private SpecialReducerItem specialReducer;
 
+    private GroupDiscount groupDiscount;
+
+
+    public boolean isInGroupDiscount() {
+        return groupDiscount != null;
+    }
+
+    public GroupDiscount getGroupDiscount() {
+        return groupDiscount;
+    }
+
+    public void setGroupDiscount(GroupDiscount groupDiscount) {
+        this.groupDiscount = groupDiscount;
+    }
+
     private Map<Integer, Integer> specialOffersMap;
 
     public int getAmount() {

@@ -9,4 +9,5 @@ public class GroupDiscount {
     private int groupPrice;
 
     private int triggerAmount;
+
 }

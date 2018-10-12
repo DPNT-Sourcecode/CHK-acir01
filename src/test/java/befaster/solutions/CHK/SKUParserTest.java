@@ -6,6 +6,7 @@ import org.junit.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.nullValue;
 
 public class SKUParserTest {
 
@@ -43,5 +44,11 @@ public class SKUParserTest {
         assertThat(with_reducer.getSpecialReducer().getReduceTarget(), equalTo("Q"));
         assertThat(with_reducer.getSpecialReducer().getTriggerAmount(), equalTo(3));
 
+        SKU reducer_treated_as_special = skuParser.parseLine("| F    | 10    | 2F get one F free      |");
+        assertThat(reducer_treated_as_special.getPrice(), equalTo(10));
+        assertThat(reducer_treated_as_special.getItemName(), equalTo("F"));
+        assertThat(reducer_treated_as_special.getSpecialOffersMap().containsKey(3), equalTo(true));
+        assertThat(reducer_treated_as_special.getSpecialOffersMap().containsValue(20), equalTo(true));
+        assertThat(reducer_treated_as_special.getSpecialReducer(), nullValue());
     }
 }

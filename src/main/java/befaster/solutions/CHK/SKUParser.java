@@ -59,7 +59,7 @@ public class SKUParser {
             if (of == OfferType.Reducer) {
                 String cleanData = offer.replace("get one", "").
                         replace("free", "").trim();
-                String[] granular = cleanData.split("\\ ");
+                String[] granular = cleanData.split("\\s+");
                 String target = granular[1].trim();
 
                 String trimTarget = granular[0].trim();

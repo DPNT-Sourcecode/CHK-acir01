@@ -84,14 +84,14 @@ public class CheckoutSolution {
                 leftSku.add(sku);
                 if (leftSku.size() == triggerAmount) {
                     totalPrice += price;
-                    leftSku.em;
+                    leftSku.clear();
                 }
             }
         }
 
         //take least priced not grouped sku and append to total price
-        for (int i = 0; i < skuLeft; i++) {
-            totalPrice += sorted.get(sorted.size() - 1 - i).getPrice();
+        for (SKU sku : leftSku) {
+            totalPrice += sku.getPrice();
         }
         //fill by 3 each group till the end of group items
         return totalPrice;

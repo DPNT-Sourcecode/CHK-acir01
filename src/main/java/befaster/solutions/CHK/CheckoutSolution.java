@@ -44,13 +44,13 @@ public class CheckoutSolution {
     public Integer checkout(String skus) {
 
         priceOffersTable = new HashMap<String, SKU>();
-            try {
-                priceOffersTable =
-                        new SKUParser("G:\\Repos\\accelerate-challenge\\" +
-                                "tdl-runner-java\\src\\main\\resources\\skus").parse();
-            } catch (IOException e) {
-                return -1;
-            }
+        try {
+            priceOffersTable =
+                    new SKUParser("G:\\Repos\\accelerate-challenge\\" +
+                            "tdl-runner-java\\src\\main\\resources\\skus").parse();
+        } catch (IOException e) {
+            return -1;
+        }
 
         if (skus == null)
             return -1;
@@ -85,6 +85,17 @@ public class CheckoutSolution {
             totalPrice += item.getTotalPrice();
         }
         return totalPrice;
+    }
+
+    private int calculateGroupDiscountItemsPrice() {
+        //get group price
+
+        //get items for group
+
+        //order group items by item price
+
+        //fill by 3 each group till the end of group items
+
     }
 
     private HashMap<String, Integer> getItemsAmountMap(char[] items) throws InvalidKeyException {

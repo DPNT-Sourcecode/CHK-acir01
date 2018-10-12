@@ -36,16 +36,19 @@ public class SKUParser {
         String itemPriceStr = columns[1].trim();
         Integer itemPrice = Integer.parseInt(itemPriceStr);
         //get special offers
-        getSpecialOffers(columns[2], itemPrice, new HashMap<>());
+        buildSkuWithSpecialOffers(columns[2], itemName, itemPrice, new HashMap<>());
 
     }
 
-    private void getSpecialOffers(String offersString, int itemPrice, HashMap<Integer, Integer> specials) {
+    private SKU buildSkuWithSpecialOffers(String offersString, String itemName, int itemPrice, HashMap<Integer, Integer> specials) {
+
+        SKU sku = new SKU(itemName, itemPrice,)
         //split offers
         String[] offers = offersString.trim().split(",");
         //foreach offer
 
-
+        //for now can be only one
+        SpecialReducerItem reducerItem;
         for (String offer : offers) {
             //offer type
             OfferType of = getOfferType(offer);
@@ -66,7 +69,7 @@ public class SKUParser {
                     specials.put(amountTriger + 1, itemPrice * amountTriger);
                 } else {
                     //TODO: reduce amount can be possibly changed in special offers column
-                    SpecialReducerItem r = new SpecialReducerItem(target, 1, amountTriger);
+                    reducerItem = new SpecialReducerItem(target, 1, amountTriger);
                 }
             } else {
                 String[] parts = offer.split("for");
@@ -75,6 +78,7 @@ public class SKUParser {
                 specials.put(amount, bundlePrice);
             }
         }
+
     }
 
     private OfferType getOfferType(String offer) {

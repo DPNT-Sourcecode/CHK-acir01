@@ -60,4 +60,15 @@ public class SKUParserTest {
         HashMap<String, SKU> result = skuParser.parse();
         assertThat(result.containsKey("V"), equalTo(true));
     }
+
+    @Test
+    public void parseGroupDiscount() {
+        SKU result = skuParser.parseLine("| X    | 17    | buy any 3 of (S,T,X,Y,Z) for 45 |");
+        assertThat(result.getItemName(), equalTo("X"));
+        assertThat(result.getPrice(), equalTo(17));
+        assertThat(result.getGroupDiscount(), notNullValue());
+        assertThat(result.getGroupDiscount().getGroupPrice(), equalTo(45));
+        assertThat(result.getGroupDiscount().getTriggerAmount(), equalTo(3));
+
+    }
 }

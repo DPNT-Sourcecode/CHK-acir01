@@ -36,11 +36,11 @@ public class SKUParser {
         String itemPriceStr = columns[1].trim();
         Integer itemPrice = Integer.parseInt(itemPriceStr);
         //get special offers
-        getSpecialOffers(columns[2]);
+        getSpecialOffers(columns[2], itemPrice, new HashMap<>());
 
     }
 
-    private void getSpecialOffers(String offersString) {
+    private void getSpecialOffers(String offersString, int itemPrice, HashMap<Integer, Integer> specials) {
         //split offers
         String[] offers = offersString.trim().split(",");
         //foreach offer
@@ -60,6 +60,11 @@ public class SKUParser {
                 String trimTarget = granular[0].trim();
                 String amountStr = trimTarget.substring(0, 1);
                 String initiator = trimTarget.substring(1, 2);
+                Integer amountTriger = Integer.parseInt(amountStr);
+                //treat same free as special
+                if(initiator.equals(target)){
+                    specials.put(amountTriger + 1, itemPrice * amountTriger)
+                }
             }
             //add reducer
             //else

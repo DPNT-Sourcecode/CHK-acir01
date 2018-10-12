@@ -66,7 +66,8 @@ public class CheckoutSolution {
         //get group price
         //order group price SKU in reverse order
         List<SKU> sorted = priceOffersTable.values().stream().
-                filter(f -> f.isInGroupDiscount()).sorted(Comparator.comparing(SKU::getPrice).reversed()).
+                filter(f -> f.isInGroupDiscount()).
+                sorted(Comparator.comparing(SKU::getPrice).reversed()).
                 collect(Collectors.toList());
         //get items for group
         if (sorted.isEmpty())
@@ -82,9 +83,11 @@ public class CheckoutSolution {
         int totalPrice = 0;
         int skuLeft = 0;
         for (SKU sku : sorted) {
-            if (skuLeft == triggerAmount) {
-                totalPrice += price;
-                skuLeft = 0;
+            for(int i = 0; i< sku.getAmount(); i++){
+                if (skuLeft == triggerAmount) {
+                    totalPrice += price;
+                    skuLeft = 0;
+                }
             }
             skuLeft++;
         }

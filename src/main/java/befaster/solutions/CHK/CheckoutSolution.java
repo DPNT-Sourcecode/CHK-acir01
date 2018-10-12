@@ -14,34 +14,25 @@ public class CheckoutSolution {
         Map<Integer, Integer> a_specials = new HashMap<>();
         a_specials.put(3, 130);
         a_specials.put(5, 200);
-        SKU A = new SKU("A", 50, null, a_specials);
-        priceOffersTable.put(A.getItemName(), A);
+        appendNewSkuItem("A", 50, null, a_specials);
 
         Map<Integer, Integer> b_specials = new HashMap<>();
         b_specials.put(2, 45);
-
-        SKU B = new SKU("B", 30, null, b_specials);
-        SKU C = new SKU("C", 20, null, null);
-        SKU D = new SKU("D", 15, null, null);
-        SKU E = new SKU("E", 40, new SpecialReducerItem("B", 1, 2),
+        appendNewSkuItem("B", 30, null, b_specials);
+        appendNewSkuItem("C", 20, null, null);
+        appendNewSkuItem("D", 15, null, null);
+        appendNewSkuItem("E", 40, new SpecialReducerItem("B", 1, 2),
                 null);
-        SpecialReducerItem reducerF = new SpecialReducerItem("F", 1, 2);
 
+        SpecialReducerItem reducerF = new SpecialReducerItem("F", 1, 2);
         //treat reducer of f as special offer?
         Map<Integer, Integer> f_specials = new HashMap<>();
         f_specials.put(3, 20);
-
-        SKU F = new SKU("F", 10, null, f_specials);
-
-        priceOffersTable.put(B.getItemName(), B);
-        priceOffersTable.put(C.getItemName(), C);
-        priceOffersTable.put(D.getItemName(), D);
-        priceOffersTable.put(E.getItemName(), E);
-        priceOffersTable.put(F.getItemName(), F);
+        appendNewSkuItem("F", 10, null, f_specials);
     }
 
     private void appendNewSkuItem(String itemName, int price, SpecialReducerItem specialReducer,
-                                  Map<Integer, Integer> specialsMap){
+                                  Map<Integer, Integer> specialsMap) {
         SKU newSku = new SKU(itemName, price, specialReducer, specialsMap);
         priceOffersTable.put(newSku.getItemName(), newSku);
     }

@@ -5,7 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class Skus {
+public class SKU {
     private int amount;
 
     // item
@@ -40,7 +40,7 @@ public class Skus {
         return specialReducer;
     }
 
-    public Skus(String item, int price, SpecialReducerItem specialReducer, Map<Integer, Integer> specialOffersMap) {
+    public SKU(String item, int price, SpecialReducerItem specialReducer, Map<Integer, Integer> specialOffersMap) {
         this.item = item;
         this.price = price;
         this.specialReducer = specialReducer;

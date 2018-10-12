@@ -6,24 +6,24 @@ import java.util.Map;
 
 public class CheckoutSolution {
     //offers table
-    private HashMap<String, Skus> priceOffersTable;
+    private HashMap<String, SKU> priceOffersTable;
 
     public CheckoutSolution() {
-        priceOffersTable = new HashMap<String, Skus>();
+        priceOffersTable = new HashMap<String, SKU>();
 
         Map<Integer, Integer> a_specials = new HashMap<>();
         a_specials.put(3, 130);
         a_specials.put(5, 200);
-        Skus A = new Skus("A", 50, null, a_specials);
+        SKU A = new SKU("A", 50, null, a_specials);
         priceOffersTable.put(A.getItemName(), A);
 
         Map<Integer, Integer> b_specials = new HashMap<>();
         b_specials.put(2, 45);
 
-        Skus B = new Skus("B", 30, null, b_specials);
-        Skus C = new Skus("C", 20, null, null);
-        Skus D = new Skus("D", 15, null, null);
-        Skus E = new Skus("E", 40, new SpecialReducerItem("B", 1, 2),
+        SKU B = new SKU("B", 30, null, b_specials);
+        SKU C = new SKU("C", 20, null, null);
+        SKU D = new SKU("D", 15, null, null);
+        SKU E = new SKU("E", 40, new SpecialReducerItem("B", 1, 2),
                 null);
         SpecialReducerItem reducerF = new SpecialReducerItem("F", 1, 2);
 
@@ -31,7 +31,7 @@ public class CheckoutSolution {
         Map<Integer, Integer> f_specials = new HashMap<>();
         f_specials.put(3, 20);
 
-        Skus F = new Skus("F", 10, null, f_specials);
+        SKU F = new SKU("F", 10, null, f_specials);
 
         priceOffersTable.put(B.getItemName(), B);
         priceOffersTable.put(C.getItemName(), C);
@@ -40,6 +40,11 @@ public class CheckoutSolution {
         priceOffersTable.put(F.getItemName(), F);
     }
 
+    private void appendNewSkuItem(String itemName, int price, SpecialReducerItem specialReducer,
+                                  Map<Integer, Integer> specialsMap){
+        SKU newSku = new SKU(itemName, price, specialReducer, specialsMap);
+        priceOffersTable.put(newSku.getItemName(), newSku);
+    }
 
     public Integer checkout(String skus) {
         if (skus == null)
@@ -58,7 +63,7 @@ public class CheckoutSolution {
             return -1;
         }
 
-        //set amount for each Skus
+        //set amount for each SKU
         setAmountOfItems(itemsAmountMap);
 
         //reduce items amount if reduction is applicable
@@ -71,7 +76,7 @@ public class CheckoutSolution {
 
     private int calculateTotalPrice() {
         int totalPrice = 0;
-        for (Skus item : priceOffersTable.values()) {
+        for (SKU item : priceOffersTable.values()) {
             totalPrice += item.getTotalPrice();
         }
         return totalPrice;
@@ -92,7 +97,7 @@ public class CheckoutSolution {
     }
 
     private void setAmountOfItems(HashMap<String, Integer> itemsAmountMap) {
-        for (Skus item : priceOffersTable.values()) {
+        for (SKU item : priceOffersTable.values()) {
             Integer itemAmount = itemsAmountMap.get(item.getItemName());
             if (itemAmount == null)
                 item.setAmount(0);
@@ -103,8 +108,8 @@ public class CheckoutSolution {
     }
 
     private void applyFreeItemsSpecials() {
-        for (Skus item : priceOffersTable.values()) {
-            Skus withReducer = priceOffersTable.values().stream().
+        for (SKU item : priceOffersTable.values()) {
+            SKU withReducer = priceOffersTable.values().stream().
                     filter(x -> x.isReducerOf(item.getItemName())).findFirst().orElse(null);
             SpecialReducerItem reducer = withReducer == null ? null : withReducer.getSpecialReducer();
             int itemAmount = item.getAmount();

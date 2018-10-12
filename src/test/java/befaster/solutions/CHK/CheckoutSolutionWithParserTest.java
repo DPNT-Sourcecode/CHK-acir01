@@ -128,6 +128,16 @@ public class CheckoutSolutionWithParserTest {
 
     @Test
     public void with_group_discount(){
+        Integer price_t = checkoutSolution.checkout("T");
+        assertThat(price_t, equalTo(20));
+
+        Integer price_y = checkoutSolution.checkout("S");
+        assertThat(price_t, equalTo(20));
+
+        Integer price_s = checkoutSolution.checkout("Y");
+        assertThat(price_t, equalTo(20));
+
+
         Integer price = checkoutSolution.checkout("XYZ");
         assertThat(price, equalTo(45));
 

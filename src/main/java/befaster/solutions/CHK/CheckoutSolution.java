@@ -97,7 +97,7 @@ public class CheckoutSolution {
                 filter(f -> f.isInGroupDiscount()).sorted(Comparator.comparing(SKU::getPrice).reversed()).
                 collect(Collectors.toList());
         //get items for group
-        if(sorted.isEmpty())
+        if (sorted.isEmpty())
             return 0;
 
         SKU first = sorted.get(0);
@@ -108,15 +108,18 @@ public class CheckoutSolution {
 
         int totalPrice = 0;
         int skuLeft = 0;
-        for (SKU sku : sorted){
-            if(skuLeft == triggerAmount) {
+        for (SKU sku : sorted) {
+            if (skuLeft == triggerAmount) {
                 totalPrice += price;
             }
             skuLeft++;
         }
-
+        //take last priced SKU and append to price
+        for (int i = 0; i < skuLeft; i++) {
+            totalPrice += sorted.get(sorted.size() - 1 - i).getPrice();
+        }
         //fill by 3 each group till the end of group items
-        return 0;
+        return totalPrice;
     }
 
     private HashMap<String, Integer> getItemsAmountMap(char[] items) throws InvalidKeyException {

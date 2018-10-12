@@ -2,7 +2,9 @@ package befaster.solutions.CHK;
 
 import java.io.IOException;
 import java.security.InvalidKeyException;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -84,14 +86,16 @@ public class CheckoutSolution {
         int totalPrice = priceOffersTable.values().stream().
                 filter(f -> !f.isInGroupDiscount())
                 .map(d -> d.getTotalPrice()).
-                reduce(0, (n, o) -> n + o);
+                        reduce(0, (n, o) -> n + o);
         return totalPrice;
     }
 
     private int calculateGroupDiscountItemsPrice() {
         //get group price
-        priceOffersTable.values().stream().
-                filter(f -> !f.isInGroupDiscount()).collect(Collectors.toList());
+        //order group price SKU in reverse order
+        List<SKU> sorted = priceOffersTable.values().stream().
+                filter(f -> !f.isInGroupDiscount()).sorted(Comparator.comparing(SKU::getPrice).reversed()).
+                collect(Collectors.toList());
         //get items for group
 
         //order group items by item price

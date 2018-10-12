@@ -46,12 +46,12 @@ public class SKUParser {
         //foreach offer
 
 
-        for(String offer : offers){
+        for (String offer : offers) {
             //offer type
             OfferType of = getOfferType(offer);
 
             //if reducer
-            if (of == OfferType.Reducer){
+            if (of == OfferType.Reducer) {
                 String cleanData = offer.replace("get one", "").
                         replace("free", "").trim();
                 String[] granular = cleanData.split(" ");
@@ -62,26 +62,29 @@ public class SKUParser {
                 String initiator = trimTarget.substring(1, 2);
                 Integer amountTriger = Integer.parseInt(amountStr);
                 //treat same free as special
-                if(initiator.equals(target)){
-                    specials.put(amountTriger + 1, itemPrice * amountTriger)
+                if (initiator.equals(target)) {
+                    specials.put(amountTriger + 1, itemPrice * amountTriger);
+                } else {
+                    //TODO: reduce amount can be changed in special offers column
+                    SpecialReducerItem r = new SpecialReducerItem(target, 1, amountTriger);
                 }
             }
-            //add reducer
-            //else
-            //add special
+            else{
+                
+            }
         }
     }
 
     private OfferType getOfferType(String offer) {
         OfferType of = null;
-        if(offer.contains("for"))
+        if (offer.contains("for"))
             of = OfferType.Special;
         else
             of = OfferType.Reducer;
         return of;
     }
 
-    private enum OfferType{
+    private enum OfferType {
         Reducer,
         Special
     }

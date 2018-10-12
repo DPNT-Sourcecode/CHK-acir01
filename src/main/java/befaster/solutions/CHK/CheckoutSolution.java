@@ -94,10 +94,17 @@ public class CheckoutSolution {
         //get group price
         //order group price SKU in reverse order
         List<SKU> sorted = priceOffersTable.values().stream().
-                filter(f -> !f.isInGroupDiscount()).sorted(Comparator.comparing(SKU::getPrice).reversed()).
+                filter(f -> f.isInGroupDiscount()).sorted(Comparator.comparing(SKU::getPrice).reversed()).
                 collect(Collectors.toList());
         //get items for group
+        if(sorted.isEmpty())
+            return 0;
 
+        SKU first = sorted.get(0);
+        GroupDiscount gd = first.getGroupDiscount();
+
+        Integer price = gd.getGroupPrice();
+        Integer triggerAmount = gd.getTriggerAmount();
         //order group items by item price
 
         //fill by 3 each group till the end of group items

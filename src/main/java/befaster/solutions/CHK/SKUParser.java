@@ -66,8 +66,8 @@ public class SKUParser {
                 String target = granular[1].trim();
 
                 String trimTarget = granular[0].trim();
-                String amountStr = trimTarget.substring(0, 1);
-                String initiator = trimTarget.substring(1, 2);
+                String amountStr = trimTarget.substring(0, trimTarget.length() - 1);
+                String initiator = trimTarget.substring(trimTarget.length() - 1);
                 Integer amountTriger = Integer.parseInt(amountStr);
                 //treat same free as special
                 if (initiator.equals(target)) {

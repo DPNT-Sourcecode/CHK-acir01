@@ -1,6 +1,10 @@
 package befaster.solutions.CHK;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.stream.Stream;
 
 public class SKUParser {
     private HashMap<String, SKU> units;
@@ -11,8 +15,18 @@ public class SKUParser {
         this.units = new HashMap<>();
     }
 
-    public HashMap<String, SKU> parse() {
+    public HashMap<String, SKU> parse() throws IOException {
+
         //read line of file
+
+        try (Stream<String> stream = Files.lines(Paths.get(filePath))) {
+            stream.forEach(System.out::println);
+        }
+        return units;
+    }
+
+    public HashMap<String, SKU> parseLine() {
+
 
         //split on columns
 
@@ -27,12 +41,16 @@ public class SKUParser {
     }
 
     private void getSpecialOffers(String offersString) {
+        //split offers
+
+        //foreach offer
+
         //offer type
 
         //if reducer
-            //add reducer
+        //add reducer
         //else
-            //add special
+        //add special
     }
 
 

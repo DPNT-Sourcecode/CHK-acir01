@@ -52,7 +52,10 @@ public class SKUParser {
 
             //if reducer
             if (of == OfferType.Reducer){
-                String cleanData = offer.replace("get one", "").replace("free", "");
+                String cleanData = offer.replace("get one", "").
+                        replace("free", "").trim();
+                String[] granular = cleanData.split(" ");
+                String target = granular[1].trim();
             }
             //add reducer
             //else

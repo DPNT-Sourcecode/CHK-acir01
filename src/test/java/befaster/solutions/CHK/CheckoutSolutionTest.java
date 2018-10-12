@@ -3,6 +3,8 @@ package befaster.solutions.CHK;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -11,8 +13,8 @@ public class CheckoutSolutionTest {
     private CheckoutSolution checkoutSolution;
 
     @Before
-    public void setUp(){
-        checkoutSolution = new CheckoutSolution();
+    public void setUp() throws IOException {
+        checkoutSolution = new CheckoutSolution(null);
     }
 
     @Test

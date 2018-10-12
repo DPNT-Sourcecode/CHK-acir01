@@ -1,5 +1,6 @@
 package befaster.solutions.CHK;
 
+import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.util.HashMap;
 import java.util.Map;
@@ -8,8 +9,7 @@ public class CheckoutSolution {
     //offers table
     private HashMap<String, SKU> priceOffersTable;
 
-    public CheckoutSolution() {
-        priceOffersTable = new HashMap<String, SKU>();
+    public CheckoutSolution(SKUParser skuParser) throws IOException {
 
 //        OldInitialization();
     }
@@ -42,6 +42,13 @@ public class CheckoutSolution {
     }
 
     public Integer checkout(String skus) {
+
+        priceOffersTable = new HashMap<String, SKU>();
+        if (skuParser == null)
+            OldInitialization();
+        else
+            priceOffersTable = skuParser.parse();
+        
         if (skus == null)
             return -1;
 

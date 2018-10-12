@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 public class SKUParser {
     private HashMap<String, SKU> units;
     private String filePath;
-    private GroupDiscount groupDiscount;
+    private GroupDiscount groupDiscount = new GroupDiscount();
 
     public SKUParser(String filePath) {
         this.filePath = filePath;
@@ -52,6 +52,7 @@ public class SKUParser {
         HashMap<Integer, Integer> specials = new HashMap();
         //for now can be only one
         SpecialReducerItem reducerItem = null;
+        boolean groupDiscountedItem = false;
         for (String offer : offers) {
             if (offer.isEmpty())
                 continue;
@@ -78,8 +79,15 @@ public class SKUParser {
                     reducerItem = new SpecialReducerItem(target, 1, amountTriger);
                 }
             } else if (of == OfferType.GroupDiscount) {
-                if(groupDiscount == null)
-                    groupDiscount = new GroupDiscount();
+                groupDiscountedItem = true;
+                String cleanData = offer.
+                        replace("buy any ", "").
+                        replace("of","").
+                        replace("for","");
+
+                
+                groupDiscount.setGroupPrice();
+                groupDiscount.setTriggerAmount();
             } else {
                 String[] parts = offer.split("for");
                 String bundleDef = parts[0].trim();
@@ -89,7 +97,9 @@ public class SKUParser {
             }
         }
         SKU s = new SKU(itemName, itemPrice, reducerItem, specials);
+        if(groupDiscountedItem){
 
+        }
 
         return s;
     }

@@ -49,16 +49,13 @@ public class CheckoutSolution {
     public Integer checkout(String skus) {
 
         priceOffersTable = new HashMap<String, SKU>();
-        if (skuParser == null)
-            OldInitialization();
-        else {
             try {
-                priceOffersTable = skuParser.parse();
+                priceOffersTable =
+                        new SKUParser("G:\\Repos\\accelerate-challenge\\" +
+                                "tdl-runner-java\\src\\main\\resources\\skus").parse();
             } catch (IOException e) {
                 return -1;
             }
-
-        }
 
         if (skus == null)
             return -1;

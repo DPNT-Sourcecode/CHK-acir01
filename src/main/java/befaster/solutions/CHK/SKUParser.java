@@ -48,12 +48,25 @@ public class SKUParser {
 
         for(String offer : offers){
             //offer type
-            //if reducer
+            OfferType of = getOfferType(offer);
 
+            //if reducer
+            if (of == OfferType.Reducer){
+                String cleanData = offer.replace("get one", "").replace("free", "");
+            }
             //add reducer
             //else
             //add special
         }
+    }
+
+    private OfferType getOfferType(String offer) {
+        OfferType of = null;
+        if(offer.contains("for"))
+            of = OfferType.Special;
+        else
+            of = OfferType.Reducer;
+        return of;
     }
 
     private enum OfferType{

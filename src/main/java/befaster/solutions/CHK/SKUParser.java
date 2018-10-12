@@ -65,12 +65,14 @@ public class SKUParser {
                 if (initiator.equals(target)) {
                     specials.put(amountTriger + 1, itemPrice * amountTriger);
                 } else {
-                    //TODO: reduce amount can be changed in special offers column
+                    //TODO: reduce amount can be possibly changed in special offers column
                     SpecialReducerItem r = new SpecialReducerItem(target, 1, amountTriger);
                 }
-            }
-            else{
-                
+            } else {
+                String[] parts = offer.split("for");
+                Integer amount = Integer.parseInt(parts[0].trim().substring(0, 1));
+                Integer bundlePrice = Integer.parseInt(parts[1].trim());
+                specials.put(amount, bundlePrice);
             }
         }
     }

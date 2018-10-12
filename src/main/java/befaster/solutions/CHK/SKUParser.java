@@ -56,6 +56,10 @@ public class SKUParser {
                         replace("free", "").trim();
                 String[] granular = cleanData.split(" ");
                 String target = granular[1].trim();
+
+                String trimTarget = granular[0].trim();
+                String amountStr = trimTarget.substring(0, 1);
+                String initiator = trimTarget.substring(1, 2);
             }
             //add reducer
             //else

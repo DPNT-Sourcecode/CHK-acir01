@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class CheckoutSolution {
     //offers table
@@ -89,7 +90,8 @@ public class CheckoutSolution {
 
     private int calculateGroupDiscountItemsPrice() {
         //get group price
-
+        priceOffersTable.values().stream().
+                filter(f -> !f.isInGroupDiscount()).collect(Collectors.toList());
         //get items for group
 
         //order group items by item price

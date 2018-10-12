@@ -87,6 +87,7 @@ public class CheckoutSolution {
                 filter(f -> !f.isInGroupDiscount())
                 .map(d -> d.getTotalPrice()).
                         reduce(0, (n, o) -> n + o);
+        totalPrice += calculateGroupDiscountItemsPrice();
         return totalPrice;
     }
 
@@ -106,6 +107,7 @@ public class CheckoutSolution {
         Integer price = gd.getGroupPrice();
         Integer triggerAmount = gd.getTriggerAmount();
 
+        //take pairs of the most expensive and match them as discount
         int totalPrice = 0;
         int skuLeft = 0;
         for (SKU sku : sorted) {
@@ -114,7 +116,8 @@ public class CheckoutSolution {
             }
             skuLeft++;
         }
-        //take last priced SKU and append to price
+
+        //take least priced not grouped sku and append to total price
         for (int i = 0; i < skuLeft; i++) {
             totalPrice += sorted.get(sorted.size() - 1 - i).getPrice();
         }

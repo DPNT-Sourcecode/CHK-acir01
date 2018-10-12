@@ -25,7 +25,7 @@ public class SKUParser {
         return units;
     }
 
-    public void parseLine(String line) {
+    public SKU parseLine(String line) {
         //split on columns
         //remove first and last '|'
         String parsed = line.substring(1, line.length() - 1);
@@ -36,19 +36,18 @@ public class SKUParser {
         String itemPriceStr = columns[1].trim();
         Integer itemPrice = Integer.parseInt(itemPriceStr);
         //get special offers
-        buildSkuWithSpecialOffers(columns[2], itemName, itemPrice, new HashMap<>());
-
+        return buildSkuWithSpecialOffers(columns[2], itemName, itemPrice);
     }
 
-    private SKU buildSkuWithSpecialOffers(String offersString, String itemName, int itemPrice, HashMap<Integer, Integer> specials) {
+    private SKU buildSkuWithSpecialOffers(String offersString, String itemName, int itemPrice) {
 
-        SKU sku = new SKU(itemName, itemPrice,)
+
         //split offers
         String[] offers = offersString.trim().split(",");
         //foreach offer
-
+        HashMap<Integer, Integer> specials = new HashMap();
         //for now can be only one
-        SpecialReducerItem reducerItem;
+        SpecialReducerItem reducerItem = null;
         for (String offer : offers) {
             //offer type
             OfferType of = getOfferType(offer);
@@ -78,7 +77,7 @@ public class SKUParser {
                 specials.put(amount, bundlePrice);
             }
         }
-
+        return new SKU(itemName, itemPrice, reducerItem, specials);
     }
 
     private OfferType getOfferType(String offer) {

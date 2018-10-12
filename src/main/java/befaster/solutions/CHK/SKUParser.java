@@ -26,16 +26,17 @@ public class SKUParser {
     }
 
     public void parseLine(String line) {
-
-
         //split on columns
-
+        //remove first and last '|'
+        String parsed = line.substring(1, line.length() - 1);
+        String[] columns = parsed.split("|");
         //get item name
-
+        String itemName = columns[0].trim();
         //get item price
-
+        String itemPriceStr = columns[1].trim();
+        Integer itemPrice = Integer.parseInt(itemPriceStr);
         //get special offers
-
+        getSpecialOffers(columns[2]);
 
     }
 

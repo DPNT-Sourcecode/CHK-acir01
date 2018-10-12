@@ -9,6 +9,14 @@ public class SpecialReducerItem {
         return reduceTarget;
     }
 
+    public int getReduceAmount() {
+        return reduceAmount;
+    }
+
+    public int getTriggerAmount() {
+        return triggerAmount;
+    }
+
     public SpecialReducerItem(String reduceTarger, int reduceAmount, int triggerAmount) {
         this.reduceTarget = reduceTarger;
         this.reduceAmount = reduceAmount;

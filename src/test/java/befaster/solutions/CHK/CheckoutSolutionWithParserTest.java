@@ -130,5 +130,8 @@ public class CheckoutSolutionWithParserTest {
     public void with_group_discount(){
         Integer price = checkoutSolution.checkout("XYZ");
         assertThat(price, equalTo(45));
+
+        Integer price2 = checkoutSolution.checkout("STX");
+        assertThat(price2, equalTo(45));
     }
 }

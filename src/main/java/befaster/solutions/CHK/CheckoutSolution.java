@@ -84,11 +84,11 @@ public class CheckoutSolution {
         int skuLeft = 0;
         for (SKU sku : sorted) {
             for (int i = 0; i < sku.getAmount(); i++) {
+                skuLeft++;
                 if (skuLeft == triggerAmount) {
                     totalPrice += price;
                     skuLeft = 0;
                 }
-                skuLeft++;
             }
         }
 

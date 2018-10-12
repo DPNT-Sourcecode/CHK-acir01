@@ -105,7 +105,15 @@ public class CheckoutSolution {
 
         Integer price = gd.getGroupPrice();
         Integer triggerAmount = gd.getTriggerAmount();
-        //order group items by item price
+
+        int totalPrice = 0;
+        int skuLeft = 0;
+        for (SKU sku : sorted){
+            if(skuLeft == triggerAmount) {
+                totalPrice += price;
+            }
+            skuLeft++;
+        }
 
         //fill by 3 each group till the end of group items
         return 0;

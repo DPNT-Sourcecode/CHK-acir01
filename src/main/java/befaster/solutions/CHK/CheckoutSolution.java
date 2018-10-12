@@ -8,11 +8,6 @@ import java.util.Map;
 public class CheckoutSolution {
     //offers table
     private HashMap<String, SKU> priceOffersTable;
-    private SKUParser skuParser;
-
-    public void setSkuParser(SKUParser skuParser) {
-        this.skuParser = skuParser;
-    }
 
     public CheckoutSolution() {
 

@@ -15,7 +15,6 @@ public class CheckoutSolutionWithParserTest {
     @Before
     public void setUp() throws IOException {
         checkoutSolution = new CheckoutSolution();
-        checkoutSolution.setSkuParser(new SKUParser("G:\\Repos\\accelerate-challenge\\tdl-runner-java\\src\\main\\resources\\skus"));
     }
 
     @Test
@@ -72,6 +71,12 @@ public class CheckoutSolutionWithParserTest {
         //330 + 45 + 80
         Integer price = checkoutSolution.checkout("BEEAAAAAAAAABB");
         assertThat(price, equalTo(330+50+45+80));
+    }
+
+    @Test
+    public void test_new_entries(){
+        Integer price = checkoutSolution.checkout("H");
+        assertThat(price, equalTo(10));
     }
 
     @Test

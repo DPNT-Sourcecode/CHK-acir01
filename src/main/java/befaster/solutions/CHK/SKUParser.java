@@ -47,7 +47,16 @@ public class SKUParser {
 
 
         //split offers
-        String[] offers = offersString.trim().split(",");
+        String[] offers = null;
+        if(offersString.startsWith("buy any")){
+            offers = new String[] {
+                    offersString
+            };
+        }else
+        {
+            offers = offersString.trim().split(",");
+        }
+
         //foreach offer
         HashMap<Integer, Integer> specials = new HashMap();
         //for now can be only one

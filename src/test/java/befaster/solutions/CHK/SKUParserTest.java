@@ -40,6 +40,8 @@ public class SKUParserTest {
         assertThat(with_reducer.getPrice(), equalTo(11));
         assertThat(with_reducer.getItemName(), equalTo("R"));
         assertThat(with_reducer.getSpecialReducer(), notNullValue());
+        assertThat(with_reducer.getSpecialReducer().getReduceTarget(), equalTo("Q"));
+        assertThat(with_reducer.getSpecialReducer().getTriggerAmount(), equalTo(3));
 
     }
 }

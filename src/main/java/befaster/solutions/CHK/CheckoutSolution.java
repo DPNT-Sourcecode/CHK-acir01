@@ -2,10 +2,7 @@ package befaster.solutions.CHK;
 
 import java.io.IOException;
 import java.security.InvalidKeyException;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class CheckoutSolution {
@@ -81,13 +78,13 @@ public class CheckoutSolution {
 
         //take pairs of the most expensive and match them as discount
         int totalPrice = 0;
-        int skuLeft = 0;
+        List<SKU> leftSku = new ArrayList<>();
         for (SKU sku : sorted) {
             for (int i = 0; i < sku.getAmount(); i++) {
-                skuLeft++;
-                if (skuLeft == triggerAmount) {
+                leftSku.add(sku);
+                if (leftSku.size() == triggerAmount) {
                     totalPrice += price;
-                    skuLeft = 0;
+                    leftSku.em;
                 }
             }
         }

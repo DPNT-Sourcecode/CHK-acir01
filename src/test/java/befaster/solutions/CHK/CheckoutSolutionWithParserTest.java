@@ -125,4 +125,10 @@ public class CheckoutSolutionWithParserTest {
         Integer f6 = checkoutSolution.checkout("FFFFFF");
         assertThat(f6, equalTo(40));
     }
+
+    @Test
+    public void with_group_discount(){
+        Integer price = checkoutSolution.checkout("XYZ");
+        assertThat(price, equalTo(45));
+    }
 }

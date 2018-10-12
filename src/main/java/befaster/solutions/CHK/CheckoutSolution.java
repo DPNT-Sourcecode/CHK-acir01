@@ -13,35 +13,6 @@ public class CheckoutSolution {
     private HashMap<String, SKU> priceOffersTable;
 
     public CheckoutSolution() {
-
-//        OldInitialization();
-    }
-
-    private void OldInitialization() {
-        Map<Integer, Integer> a_specials = new HashMap<>();
-        a_specials.put(3, 130);
-        a_specials.put(5, 200);
-        appendNewSkuItem("A", 50, null, a_specials);
-
-        Map<Integer, Integer> b_specials = new HashMap<>();
-        b_specials.put(2, 45);
-        appendNewSkuItem("B", 30, null, b_specials);
-        appendNewSkuItem("C", 20, null, null);
-        appendNewSkuItem("D", 15, null, null);
-        appendNewSkuItem("E", 40, new SpecialReducerItem("B", 1, 2),
-                null);
-
-        SpecialReducerItem reducerF = new SpecialReducerItem("F", 1, 2);
-        //treat reducer of f as special offer?
-        Map<Integer, Integer> f_specials = new HashMap<>();
-        f_specials.put(3, 20);
-        appendNewSkuItem("F", 10, null, f_specials);
-    }
-
-    private void appendNewSkuItem(String itemName, int price, SpecialReducerItem specialReducer,
-                                  Map<Integer, Integer> specialsMap) {
-        SKU newSku = new SKU(itemName, price, specialReducer, specialsMap);
-        priceOffersTable.put(newSku.getItemName(), newSku);
     }
 
     public Integer checkout(String skus) {
@@ -113,6 +84,7 @@ public class CheckoutSolution {
         for (SKU sku : sorted) {
             if (skuLeft == triggerAmount) {
                 totalPrice += price;
+                skuLeft = 0;
             }
             skuLeft++;
         }

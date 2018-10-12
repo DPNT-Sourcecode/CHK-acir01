@@ -77,6 +77,12 @@ public class CheckoutSolutionWithParserTest {
     public void test_new_entries(){
         Integer price = checkoutSolution.checkout("H");
         assertThat(price, equalTo(10));
+
+        Integer price10h = checkoutSolution.checkout("HHHHHHHHHH");
+        assertThat(price10h, equalTo(80));
+
+        Integer price4u = checkoutSolution.checkout("UUUU");
+        assertThat(price4u, equalTo(120));
     }
 
     @Test

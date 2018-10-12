@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 public class SKU {
     private int amount;
 
-    // item
-    private String item;
+    // itemName
+    private String itemName;
 
     private int price;
 
@@ -26,7 +26,15 @@ public class SKU {
     }
 
     public String getItemName() {
-        return item;
+        return itemName;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public Map<Integer, Integer> getSpecialOffersMap() {
+        return specialOffersMap;
     }
 
     public boolean isReducerOf(String targetName) {
@@ -40,8 +48,8 @@ public class SKU {
         return specialReducer;
     }
 
-    public SKU(String item, int price, SpecialReducerItem specialReducer, Map<Integer, Integer> specialOffersMap) {
-        this.item = item;
+    public SKU(String itemName, int price, SpecialReducerItem specialReducer, Map<Integer, Integer> specialOffersMap) {
+        this.itemName = itemName;
         this.price = price;
         this.specialReducer = specialReducer;
         this.specialOffersMap = specialOffersMap;

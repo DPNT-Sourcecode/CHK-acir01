@@ -20,12 +20,12 @@ public class SKUParser {
         //read line of file
 
         try (Stream<String> stream = Files.lines(Paths.get(filePath))) {
-            stream.forEach(System.out::println);
+            stream.forEach(line -> parseLine(line));
         }
         return units;
     }
 
-    public HashMap<String, SKU> parseLine() {
+    public void parseLine(String line) {
 
 
         //split on columns
@@ -37,7 +37,6 @@ public class SKUParser {
         //get special offers
 
 
-        return units;
     }
 
     private void getSpecialOffers(String offersString) {

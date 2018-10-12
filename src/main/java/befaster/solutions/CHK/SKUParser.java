@@ -42,16 +42,22 @@ public class SKUParser {
 
     private void getSpecialOffers(String offersString) {
         //split offers
-
+        String[] offers = offersString.trim().split(",");
         //foreach offer
 
-        //offer type
 
-        //if reducer
-        //add reducer
-        //else
-        //add special
+        for(String offer : offers){
+            //offer type
+            //if reducer
+
+            //add reducer
+            //else
+            //add special
+        }
     }
 
-
+    private enum OfferType{
+        Reducer,
+        Special
+    }
 }

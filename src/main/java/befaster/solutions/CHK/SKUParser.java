@@ -76,7 +76,10 @@ public class SKUParser {
                     //TODO: reduce amount can be possibly changed in special offers column
                     reducerItem = new SpecialReducerItem(target, 1, amountTriger);
                 }
-            } else {
+            } else if (of == OfferType.GroupDiscount){
+                
+            }
+            else {
                 String[] parts = offer.split("for");
                 String bundleDef = parts[0].trim();
                 Integer amount = Integer.parseInt(bundleDef.substring(0, bundleDef.length() - 1));
@@ -89,6 +92,8 @@ public class SKUParser {
 
     private OfferType getOfferType(String offer) {
         OfferType of = null;
+        if (offer.startsWith("buy any"))
+            return OfferType.GroupDiscount;
         if (offer.contains("for"))
             of = OfferType.Special;
         else
@@ -98,6 +103,6 @@ public class SKUParser {
 
     private enum OfferType {
         Reducer,
-        Special
+        GroupDiscount, Special
     }
 }

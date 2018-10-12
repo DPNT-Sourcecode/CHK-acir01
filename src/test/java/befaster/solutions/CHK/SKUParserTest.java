@@ -14,7 +14,7 @@ public class SKUParserTest {
 
     @Before
     public void setUp() {
-        skuParser = new SKUParser("NoMatterNow");
+        skuParser = new SKUParser("G:\\Repos\\accelerate-challenge\\tdl-runner-java\\src\\main\\resources\\skus");
     }
 
     @Test
@@ -50,5 +50,10 @@ public class SKUParserTest {
         assertThat(reducer_treated_as_special.getSpecialOffersMap().containsKey(3), equalTo(true));
         assertThat(reducer_treated_as_special.getSpecialOffersMap().containsValue(20), equalTo(true));
         assertThat(reducer_treated_as_special.getSpecialReducer(), nullValue());
+    }
+
+    @Test
+    public void parseFileTest(){
+
     }
 }

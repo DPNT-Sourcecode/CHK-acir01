@@ -29,7 +29,7 @@ public class SKUParser {
         //split on columns
         //remove first and last '|'
         String parsed = line.substring(1, line.length() - 1);
-        String[] columns = parsed.split("|");
+        String[] columns = parsed.split("\\|");
         //get item name
         String itemName = columns[0].trim();
         //get item price
@@ -49,6 +49,9 @@ public class SKUParser {
         //for now can be only one
         SpecialReducerItem reducerItem = null;
         for (String offer : offers) {
+            if (offer.isEmpty())
+                continue;
+
             //offer type
             OfferType of = getOfferType(offer);
 

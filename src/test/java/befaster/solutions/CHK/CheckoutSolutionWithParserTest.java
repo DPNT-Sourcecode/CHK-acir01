@@ -133,5 +133,14 @@ public class CheckoutSolutionWithParserTest {
 
         Integer price2 = checkoutSolution.checkout("STX");
         assertThat(price2, equalTo(45));
+
+        Integer with_one_left = checkoutSolution.checkout("ZZZY");
+        assertThat(with_one_left, equalTo(45+17));
+
+        Integer with_two_left = checkoutSolution.checkout("ZZZYX");
+        assertThat(with_two_left, equalTo(45+37));
+
+        Integer combined = checkoutSolution.checkout("ZZZYXB");
+        assertThat(combined, equalTo(45+37+30));
     }
 }
